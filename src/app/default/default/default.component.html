@@ -1,0 +1,157 @@
+<app-spinner [ngClass]="'loading-page'"></app-spinner>
+
+<div [ngClass]="'!loading-page'">
+  <app-menu></app-menu>
+  <app-banner></app-banner>
+  <section id="clic">
+    <div class="container">
+      <div class="title_content title-content">
+        <h2>Todo a un Clic</h2>
+        <p class="subTitle">¿Qué podemos hacer por ti?</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
+          <a
+            class="text-decoration-none"
+            href="https://www.serviciosfomevi.com/autenticar/"
+            target="_blank"
+          >
+            <div class="card p-3 shadow bg-blue text-center border-0">
+              <div class="card-body">
+                <img src="img/icon-dinero.png" />
+                <hr />
+                <p class="card-title lead">
+                  Solicitar un <strong>Crédito</strong>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
+          <a
+            class="text-decoration-none"
+            href="https://www.fomevi.com/fomevi/Clasificados/wf_CLA_ClasificadosIni.aspx"
+            target="_blank"
+          >
+            <div class="card p-3 shadow bg-blue text-center border-0">
+              <div class="card-body">
+                <img src="img/anuncio.png" />
+                <hr />
+                <p class="card-title lead"><strong>Clasificados</strong></p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
+          <a class="text-decoration-none" routerLink="/files/">
+            <div class="card p-3 shadow bg-blue text-center border-0">
+              <div class="card-body">
+                <img src="img/documentos.png" />
+                <hr />
+                <p class="card-title lead">
+                  Instrucciones y <strong>Formularios</strong>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
+          <a
+            class="text-decoration-none"
+            href="https://www.fomevi.com/fomevi/PQRS/wf_PQRS_SolicitudEnc.aspx"
+            target="_blank"
+          >
+            <div class="card p-3 shadow bg-blue text-center border-0">
+              <div class="card-body">
+                <img src="img/peticion.png" />
+                <hr />
+                <p class="card-title lead">
+                  Interponer una <strong>PQRS</strong>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2">
+          <a
+            class="text-decoration-none"
+            href="https://www.serviciosfomevi.com/autenticar/"
+            target="_blank"
+          >
+            <div class="card p-3 shadow bg-blue text-center border-0">
+              <div class="card-body">
+                <img src="img/documento-legal.png" />
+                <hr />
+                <p class="card-title lead">
+                  Certificado <strong>Tributario</strong>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="agreement" class="margin-content"></div>
+  <app-agreement-component></app-agreement-component>
+
+  <div id="news" class="margin-content"></div>
+  <app-latest-news></app-latest-news>
+
+  <div id="contact" class="margin-content"></div>
+  <section id="Preguntas">
+    <div class="container">
+      <div class="title_content title-content">
+        <h2>¿Tienes dudas?</h2>
+        <p class="subTitle">Respondemos a tus preguntas</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 offset-md-2 col-md-2">
+          <figure class="snip1566">
+            <img src="img/empresa.png" alt="Ubicacion fomevi" />
+            <figcaption><i class="bi bi-building"></i></figcaption>
+            <a routerLink="/attention/true"></a>
+          </figure>
+          <span class="text-snip">Puntos de Atención</span>
+          <span class="text-snip-subtitle"><strong>Visítanos</strong></span>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2">
+          <figure class="snip1566">
+            <img src="img/AntencionCliente.jpg" alt="atención al cliente" />
+            <figcaption><i class="bi bi-emoji-smile"></i></figcaption>
+            <a routerLink="/user/"></a>
+          </figure>
+          <span class="text-snip">Atención al Cliente</span>
+          <span class="text-snip-subtitle"><strong>Contactános</strong></span>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2">
+          <figure class="snip1566">
+            <img src="img/redes_sociales.jpg" alt="redes sociales" />
+            <figcaption><i class="bi bi-chat-square-heart"></i></figcaption>
+            <a routerLink="/attention/false"></a>
+          </figure>
+          <span class="text-snip">Redes Sociales</span>
+          <span class="text-snip-subtitle"><strong>Síguenos</strong></span>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-2">
+          <figure class="snip1566">
+            <img src="img/chat_fomevi.jpg" alt="chat fomevi" />
+            <figcaption><i class="bi bi-chat-dots"></i></figcaption>
+            <a
+              href="https://api.whatsapp.com/send?phone=+573166789008&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20."
+              target="_blank"
+            ></a>
+          </figure>
+          <span class="text-snip">Chat en Línea</span>
+          <span class="text-snip-subtitle"><strong>Escríbenos</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,175 @@
+a{
+  color: white;
+}
+.slide-container {
+  margin: auto;
+  width: 600px;
+  text-align: center;
+}
+
+.wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.wrapper:focus {
+  outline: 0;
+}
+
+.clash-card {
+  background: white;
+  width: 300px;
+  display: inline-block;
+  margin: auto;
+  border-radius: 19px;
+  position: relative;
+  text-align: center;
+  box-shadow: -1px 15px 30px -12px black;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.clash-card__image {
+  position: relative;
+  min-height: 180px;
+  margin-bottom: 35px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+
+.clash-card__image--barbarian img {
+  width: 100%;
+  max-height: 200px;
+  border-top-left-radius:5%;
+  border-top-right-radius:5%;
+}
+
+.clash-card__image--archer img {
+  width: 400px;
+  position: absolute;
+  top: -34px;
+  left: -37px
+  ;
+}
+
+.clash-card__level {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.clash-card__level--barbarian {
+  color: #404f94;
+}
+
+.clash-card__unit-name {
+  font-size: 20px;
+  color: rgb(31, 30, 30);
+  font-weight: 500;
+  margin-bottom: 5px;
+  min-height: 120px;
+}
+
+.clash-card__unit-description {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.clash-card__unit-stats--barbarian {
+  background: #404f94;
+}
+
+.clash-card__unit-stats--barbarian .one-third {
+  border-right: 1px solid #273885;
+  position: relative;
+  transition: 1s ease 0s; /* only transition top property */
+
+}
+
+
+.clash-card__unit-stats--barbarian .one-third:hover{
+ background-color: #737eaf63;
+}
+
+.clash-card__unit-stats {
+  color: white;
+  font-weight: 700;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+.clash-card__unit-stats .one-third {
+  width: 33%;
+  float: left;
+  padding: 20px 15px;
+}
+.clash-card__unit-stats sup {
+  position: absolute;
+  bottom: 4px;
+  font-size: 45%;
+  margin-left: 2px;
+}
+.clash-card__unit-stats .stat {
+  position: relative;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.clash-card__unit-stats .stat-value {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 12px;
+}
+.clash-card__unit-stats .no-border {
+  border-right: none;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.slick-prev {
+  left: 100px;
+  z-index: 999;
+}
+
+.slick-next {
+  right: 100px;
+  z-index: 999;
+}
+.filter{
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.filter p{
+  color: #1a317c;
+  border: 1px solid #1a317c;
+  display: inline-block;
+  min-width: 160px;
+  padding: 20px;
+  margin: 20px 20px 40px 20px;
+  text-align: center;
+  line-height: 1em;
+  letter-spacing: 4px;
+  transition: 1s ease 0s;
+  text-transform: uppercase;
+  cursor: pointer;
+  
+}
+
+.filter .active{
+  color: white;
+  background: linear-gradient(-45deg, #404f94, #665cc4, #1a317c, #1a317c);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1)
+}
+
+
+.filter p:hover{
+  background-color: rgba(241, 241, 241, 0.199);
+  transition: 0.5s ease 0s;
+}

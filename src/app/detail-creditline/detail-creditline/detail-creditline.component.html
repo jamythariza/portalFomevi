@@ -1,0 +1,140 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+    <div *ngIf="credits">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <img
+            src="../img/imageCredit.jpg"
+            alt="pr-sample13"
+            class="img-fluid"
+            alt="novedades fomevi"
+          />
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+          <h2>{{ credits.creditLines }}</h2>
+          <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2">
+              <div id="item-portfolio" ngsReveal>
+                <div class="clash-card barbarian">
+                  <div
+                    class="clash-card__image clash-card__image--barbarian clash-card__image--archer"
+                  >
+                    <img src="../img/icon-dinero.png" alt="disfrútalo" />
+                  </div>
+                  <div class="clash-card__unit-name">
+                    Disfrútalo en lo que quieras
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2">
+              <div id="item-portfolio" ngsReveal>
+                <div class="clash-card barbarian">
+                  <div
+                    class="clash-card__image clash-card__image--barbarian clash-card__image--archer"
+                  >
+                    <img src="../img/icon-calendario.png" alt="Plazo" />
+                  </div>
+                  <div class="clash-card__unit-name">
+                    Plazo hasta <strong>{{ credits.term }} </strong>quincenas
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2">
+              <div id="item-portfolio" ngsReveal>
+                <div class="clash-card barbarian">
+                  <div
+                    class="clash-card__image clash-card__image--barbarian clash-card__image--archer"
+                  >
+                    <img
+                      src="../img/icon-booking.png"
+                      alt="Solicita en línea tu crédito"
+                    />
+                  </div>
+                  <div class="clash-card__unit-name">
+                    Solicita en <strong>línea</strong> tu crédito
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2">
+              <div id="item-portfolio" ngsReveal>
+                <div class="clash-card barbarian">
+                  <div
+                    class="clash-card__image clash-card__image--barbarian clash-card__image--archer"
+                  >
+                    <img
+                      src="../img/somos-tu-mejor-opcion.png"
+                      alt="tiempo record"
+                    />
+                  </div>
+                  <div class="clash-card__unit-name">
+                    Somos tu <strong>mejor</strong> opción
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <p>Desembolso 100% seguro, fácil y en línea.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="creditlines img-hand-mobile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 mt-4">
+        <h3 class="mb-5">
+          ¿Cómo solicitar un crédito de {{ credits.creditLines }}?
+        </h3>
+        <p>Solicita en línea tu crédito a través del Estado de Cuenta.</p>
+        <p>
+          Para mayor información puedes acercarte a nuestras oficinas o
+          contactar a nuestros asesores en las líneas de atención: 316 6789008 -
+          305 4721717 o al teléfono fijo : 604 370 66 66 extensiones: 1120,
+          1122, 1123, 1124.
+        </p>
+
+        <div class="mt-5">
+          <a
+            href="https://www.serviciosfomevi.com/autenticar/"
+            target="_blank"
+            class="btn button-active"
+            ><span>Solicitar crédito</span></a
+          >
+          <a routerLink="/user" class="btn button from-left ms4"
+            ><span>Contactar un asesor</span></a
+          >
+          <a
+            href="https://www.fomevi.com/fomevi/files/Tabla_de_Credito.pdf"
+            target="_blank"
+            class="btn button from-left ms4"
+            ><span>Ver tabla de crédito</span></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row mt-5">
+      <h2 class="text-center mb-5">También te puede interesar</h2>
+      <app-creditline (propagar)="procesaPropagar($event)"></app-creditline>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

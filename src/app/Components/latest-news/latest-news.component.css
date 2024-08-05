@@ -1,0 +1,12 @@
+
+.snip1529 h3{
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: 500;
+    line-height: 1.2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}

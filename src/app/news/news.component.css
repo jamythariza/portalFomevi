@@ -1,0 +1,22 @@
+section{
+    padding: 2em;
+    text-align: left !important;
+}
+.content-news-detail .container{
+    min-height: 400px;
+}
+
+hr{
+    color: #c2c1c1f8;;
+}
+.card{
+    background: none !important;
+}
+.img-post{
+    max-height: 270px;
+}
+
+.card-text{
+    min-height: 60px;
+}
+

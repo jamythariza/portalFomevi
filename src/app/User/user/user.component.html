@@ -1,0 +1,41 @@
+
+<app-menu></app-menu>
+<section class="content-news-detail">
+    <div class="container">
+        
+        <div class="row container-titlePage">
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <app-button-back></app-button-back> 
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8">
+                <h2 class="text-center title-page-intrernal">{{titlePage}}</h2>
+            </div>
+        </div> 
+        <div class="wrapper-spinner">
+            <app-spinner [ngClass]="loader ? 'loading-page' : 'hidden'"></app-spinner>
+        </div>
+        
+        <div *ngIf="users">
+            <div class="row"> 
+                <section  class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2 "  *ngFor="let user of users">                  
+                    <div id="item-portfolio"  ngsReveal>
+                      <div class="clash-card barbarian ">
+                        <div class="clash-card__image clash-card__image--barbarian clash-card__image--archer ">
+                          <img src="{{user.imageBase64}}">
+                        </div>
+                        <div class="clash-card__level clash-card__level--barbarian">{{user.career}}</div>
+                        <div class="clash-card__unit-name">{{user.name}} {{user.lastName}}</div>
+                        <div class="item-contact">
+                            <i class="bi bi-telephone-inbound"></i> {{user.ext}}
+                        </div> 
+                        <div class="item-contact">
+                            <i class="bi bi-envelope"></i> {{user.email}}
+                        </div>                        
+                      </div> <!-- end clash-card barbarian-->
+                    </div> <!-- end wrapper --> 
+                </section>             
+            </div>          
+        </div>
+    </div>       
+</section>
+<app-footer></app-footer>

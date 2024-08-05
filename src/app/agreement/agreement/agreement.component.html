@@ -1,0 +1,138 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+
+    <div *ngIf="agreements">
+      <div class="row content filter">
+        <div class="col-md-2">
+          <p
+            (click)="filter('TODOS')"
+            [ngClass]="filterActive == 'TODOS' ? 'active' : ''"
+            data-rel="all"
+          >
+            Todos
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p
+            (click)="filter('SALUD')"
+            [ngClass]="filterActive == 'SALUD' ? 'active' : ''"
+            data-rel="Salud"
+          >
+            Salud
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p
+            (click)="filter('TURISMO')"
+            [ngClass]="filterActive == 'TURISMO' ? 'active' : ''"
+            data-rel="Turismo"
+          >
+            Turismo
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p
+            (click)="filter('VEHÍCULOS')"
+            [ngClass]="filterActive == 'VEHÍCULOS' ? 'active' : ''"
+            data-rel="Vehículos"
+          >
+            Vehículos
+          </p>
+        </div>
+        <div class="col-md-2">
+          <p
+            (click)="filter('OTROS')"
+            [ngClass]="filterActive == 'OTROS' ? 'active' : ''"
+            data-rel="Otros"
+          >
+            Otros
+          </p>
+        </div>
+
+        <div style="clear: both"></div>
+      </div>
+      <div class="wrapper-spinner">
+        <app-spinner
+          [ngClass]="loader ? 'loading-page' : 'hidden'"
+        ></app-spinner>
+      </div>
+      <div id="portfolio-agreement" class="row content">
+        <section
+          class="col-xs-6 col-sm-6 col-md-3 col-lg-3 p-2"
+          *ngFor="let agreement of agreements"
+        >
+          <div
+            id="item-portfolio"
+            [className]="
+              agreement.titleAgreement == ''
+                ? 'tile all'
+                : 'all tile ' + agreement.titleAgreement
+            "
+            ngsReveal
+          >
+            <div class="clash-card barbarian">
+              <div class="clash-card__image clash-card__image--barbarian">
+                <img src="{{ agreement.image }}" alt="convenios fomevi" />
+              </div>
+              <div class="clash-card__level clash-card__level--barbarian">
+                {{ agreement.titleAgreement }}
+              </div>
+              <div class="clash-card__unit-name">{{ agreement.title }}</div>
+              <div
+                class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
+              >
+                <div class="one-third">
+                  <div class="stat">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                  </div>
+                  <div class="stat-value">
+                    <a routerLink="/agreementdetail/{{ agreement.id }}">Ver</a>
+                  </div>
+                </div>
+
+                <div class="one-third">
+                  <a
+                    [ngClass]="agreement.typeDestiny ? 'show' : 'disabled'"
+                    href="https://www.fomevi.com/fomevi/comun/descarga.aspx?IdGrupoConvenio={{
+                      agreement.id
+                    }}"
+                  >
+                    <div class="stat"><i class="bi bi-link"></i></div>
+                    <div class="stat-value">Archivo</div>
+                  </a>
+                </div>
+
+                <div class="one-third no-border">
+                  <a
+                    href="https://wa.me/+57{{
+                      agreement.mobile
+                    }}?text=Hola%21%20soy%20asociado%20de%20FOMEVI%20y%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20convenio:%20{{
+                      agreement.title
+                    }}."
+                    target="_black"
+                  >
+                    <div class="stat"><i class="bi bi-chat-text"></i></div>
+                    <div class="stat-value">Chat</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- end clash-card barbarian-->
+          </div>
+          <!-- end wrapper -->
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

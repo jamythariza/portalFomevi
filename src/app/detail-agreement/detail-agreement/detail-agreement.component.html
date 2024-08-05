@@ -1,0 +1,51 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+    <div class="container">       
+        <div  class="row container-titlePage">
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <app-button-back></app-button-back> 
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-7">
+                <h2 class="text-center title-page-intrernal">{{titlePage}}</h2>
+            </div>
+        </div>     
+        <div class="wrapper-spinner">
+            <app-spinner [ngClass]="loader ? 'loading-page' : 'hidden'"></app-spinner>
+        </div>   
+        <div *ngIf="!loader">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <img src="{{agreements.image}}" alt="pr-sample13" class="img-fluid" alt="novedades fomevi" />
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-7 ms-4 not-margin">
+                    <h2>{{agreements.title}}</h2>
+                    <p class="clash-card__level clash-card__level--barbarian">{{agreements.titleAgreement}}</p>
+                    <p class="dateCreated"><i class="bi bi-calendar-date"></i> {{agreements.dateFormatter}} <i class="bi bi-geo-alt">{{agreements.direction}}</i></p>
+                    <hr>
+                    <p>{{agreements.description}}</p>
+                    <hr>
+                    
+                    <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                        <div class="one-third">
+                            <div class="stat"><i class="bi bi-emoji-smile"></i></div>
+                            <div class="stat-value">{{agreements.assesor}}</div>                         
+                        </div>
+                
+                        <div class="one-third">
+                            <div class="stat"><i class="bi bi-phone"></i></div>
+                            <div class="stat-value">{{agreements.phone}}</div>
+                        </div>
+                
+                        <div class="one-third no-border">                          
+                            <div class="stat"><i class="bi bi-envelope"></i></div>
+                            <div class="stat-value">{{agreements.email}}</div>                          
+                        </div>
+                
+                    </div>
+                </div>                
+            </div>           
+        </div>
+    </div>   
+</section>
+<app-footer></app-footer>
+

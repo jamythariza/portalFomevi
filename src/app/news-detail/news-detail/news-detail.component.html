@@ -1,0 +1,49 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+    <div class="wrapper-spinner">
+      <app-spinner [ngClass]="loader ? 'loading-page' : 'hidden'"></app-spinner>
+    </div>
+    <div *ngIf="!loader">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <img
+            src="{{ image }}"
+            alt="pr-sample13"
+            class="img-fluid"
+            alt="novedades fomevi"
+          />
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8">
+          <h2>{{ title }}</h2>
+          <p class="dateCreated">
+            <i class="bi bi-calendar-date"></i> {{ dateNewsList }}
+          </p>
+          <hr />
+          <p class="text-justify">{{ description }}</p>
+          <p *ngIf="fileName != ''">
+            <a
+              href="https://www.fomevi.com/fomevi/comun/descarga.aspx?IdNovedades={{
+                detailId
+              }}"
+              ><i class="bi bi-file-pdf"></i> {{ fileName }}</a
+            >
+          </p>
+          <hr />
+          <a routerLink="/news" class="btn button from-left"
+            ><span>Más Novedades</span></a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

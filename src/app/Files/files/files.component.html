@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-8">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+    <div class="wrapper-spinner">
+      <app-spinner [ngClass]="loader ? 'loading-page' : 'hidden'"></app-spinner>
+    </div>
+    <div>
+      <div class="row">
+        <div
+          class="col-xs-6 col-sm-6 col-md-6 col-lg-3 p-2"
+          *ngFor="let group of groups"
+        >
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">{{ group.nameGroup }}</h3>
+              <div class="item-card" *ngFor="let file of group.files">
+                <i class="bi bi-file-pdf"></i>&nbsp;
+                <a
+                  href="https://www.fomevi.com/fomevi/comun/descarga.aspx?IdArchivo={{
+                    file.id
+                  }}"
+                  >{{ file.nameFile2 }}</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,9 @@
+.button-banner{
+    background: none;
+    position:  relative;
+    top: -17rem;
+    left: 30rem;
+}
+.not-link{
+    cursor:default;
+}

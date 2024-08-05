@@ -1,0 +1,85 @@
+.wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .wrapper:focus {
+    outline: 0;
+  }
+  
+  .clash-card {
+    background: white;
+    width: 280px;
+    display: inline-block;
+    margin: auto;
+    border-radius: 19px;
+    position: relative;
+    text-align: center;
+    box-shadow: -1px 15px 30px -12px black;
+    transition: visibility 0s, opacity 0.5s linear;
+    min-height: 420px;
+  }
+  
+  .clash-card__image {
+    position: relative;
+    min-height: 180px;
+    margin-bottom: 35px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+  }
+  
+  
+  .clash-card__image--barbarian img {
+    width: 100%;
+    max-height: 200px;
+    border-top-left-radius:5%;
+    border-top-right-radius:5%;
+  }
+  
+  .clash-card__image--archer {
+   background-image: radial-gradient(circle at 50% -20.71%, #ecdf6e 20%, #efd25d 30%, #f1c44d 50%, #f6b36c 90%, #f5aa59 100%);
+    /* background-image: radial-gradient(circle at 50% -20.71%, #4170AB 0,  #537db1 30%, #4170AB 50%, #4A41AB 100%);*/
+  
+  }
+
+  
+  .clash-card__level {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 20px;
+  }
+  
+  .clash-card__level--barbarian {
+    color: #404f94;
+  }
+  
+  .clash-card__unit-name {
+    font-size: 20px;
+    color: rgb(31, 30, 30);
+    font-weight: 400;
+    margin-bottom: 5px;
+    padding: 6px 16px;
+  }
+  
+  .clash-card__unit-description {
+    padding: 20px;
+    margin-bottom: 10px;
+  }
+  
+  
+  .clash-card__image--archer  img {
+    width: 100px;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, .6);
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    margin-left: -50px;
+    box-shadow: 0 6px 6px -4px rgba(0, 0, 0, .2);
+    height: 120px;
+  }
+  .item-contact{
+      border-bottom: 1px solid #ddd;
+      padding: 8px;
+  }

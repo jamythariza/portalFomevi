@@ -1,0 +1,12 @@
+a {
+    color: #414d95;
+    text-decoration: none;
+}
+h3{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.item-card{
+    padding: 4px;
+    text-align: left;
+}

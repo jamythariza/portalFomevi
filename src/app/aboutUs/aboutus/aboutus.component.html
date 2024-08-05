@@ -1,0 +1,91 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+    <div class="accordeon-tabs js-accordeon-tabs">
+      <mat-tab-group>
+        <mat-tab label="Nosotros">
+          <h3>Nosotros</h3>
+          <div class="border-b"></div>
+          <p>
+            HMV Ingenieros Ltda, Promontajes S.A.S.,MV-tel S.A.S., SAG S.A.,
+            Geosat S.A., Soenergy International Colombia S.A.S.,
+            Comercializadora Revi S.A.S., HMV Consultoría S.A.S, HMV Servicios
+            S.A.S, PCH San Bartolomé S.A.S, HMV Soluciones S.A.S., AC Piles
+            S.A.S., Axiatech S.A.S. Es una empresa sin ánimo de lucro,
+            independiente financiera y administrativamente de las empresas que
+            lo conforman y que tiene como propietarios a sus asociados, todos y
+            cada uno con los mismos derechos y deberes, independientemente de la
+            magnitud de sus aportes. FOMEVI se creó el 26 de mayo de 1996 en
+            asamblea general, donde se aprobó la base de los estatutos que hoy
+            nos rigen y se eligieron los primeros miembros de la Junta
+            Directiva, el Comité de Control Social y el Revisor Fiscal. La
+            participación de todos los asociados se realiza a través de los
+            Delegados, quienes son elegidos democrática y libremente por todos
+            los afiliados para representarlos con voz y voto en las decisiones
+            que se tomen en las Asambleas anuales de la entidad.
+          </p>
+          <br />
+          <a
+            class="btn button from-left"
+            href="https://www.fomevi.com/fomevi/files/organigrama-fomevi-2022.pptx"
+            target="_blank"
+            >Organigrama FOMEVI</a
+          >
+        </mat-tab>
+        <mat-tab label="Misión">
+          <h3>Misión</h3>
+          <div class="border-b"></div>
+          <p>
+            Construimos y mantenemos el bienestar social de los asociados y de
+            su grupo familiar, a través de servicios financieros y convenios que
+            mejoran su calidad de vida, apoyado en un equipo humano,competente y
+            comprometido.
+          </p>
+        </mat-tab>
+        <mat-tab label="Visión">
+          <h3>Visión</h3>
+          <div class="border-b"></div>
+          <p>
+            En los próximos años, FOMEVI será modelo de la economía solidaria y
+            se convertirá en la mejor alternativa de ahorro y crédito para que
+            las familias de nuestros asociados alcancen el desarrollo que se han
+            propuesto, brindaremos día a día la mejor calidad y tecnología en
+            nuestros servicios. FOMEVI apoyará con una sana administración la
+            solvencia económica que le posibilite alcanzar plenamente su objeto
+            social.
+          </p>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container">
+    <div class="row">
+      <h3>Principios</h3>
+      <hr />
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let slide of slides">
+          <ng-template carouselSlide (id)="(slide.id)">
+            <div class="content-slide">
+              <img [src]="slide.img" />
+              <div class="line"></div>
+              <div class="line2"></div>
+              <p>{{ slide.text }}</p>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

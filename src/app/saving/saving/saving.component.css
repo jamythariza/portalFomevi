@@ -1,0 +1,43 @@
+section{
+    padding: 0;
+}
+h4{
+    margin: 20px;
+}
+.saving{
+    margin-bottom: 30px;
+}
+.separator {
+    text-align: center;
+    background: #404f94;   
+    height: 1.4px;
+    margin: 0.5rem auto;
+    padding: 0;
+}
+
+.one-separator{
+    width: 80px;
+}
+.two-separator {
+    width: 150px;
+    margin-bottom: 30px;
+}
+
+p{
+    font: 300 16px/20px Roboto,Arial,Helvetica;
+    display: block;
+    text-align: justify;
+}
+
+.credit h4{
+    margin-top: 60px;
+}
+
+.credit{
+  background-image: url("../../../img/bg-clic.jpg");
+  min-height: 500px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

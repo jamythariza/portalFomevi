@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+<section class="content-news-detail">
+  <div class="container">
+    <div class="row container-titlePage">
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <app-button-back></app-button-back>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7">
+        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let line of credits" class="col-md-3 card-product">
+        <div class="card">
+          <a (click)="onDetail(line.id)" class="mb-4">
+            <img [src]="line.image" />
+            <p class="title-lines">{{ line.creditLines }}</p>
+            <div class="text-center">
+              <a (click)="onDetail(line.id)" class="btn btn-lg button from-left"
+                >Conoce más</a
+              >
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

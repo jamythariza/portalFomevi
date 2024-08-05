@@ -1,0 +1,26 @@
+<section id="Novedades" class="content-reveal">
+  <div class="title_content title-content">
+    <h2>Te puede interesar</h2>
+    <p class="subTitle">Conoce las novedades que tenemos para ti.</p>
+  </div>
+  <div class="row justify-content-center">
+    <div
+      class="col-xs-6 col-sm-6 col-md-3 col-lg-2 p-2"
+      *ngFor="let news of newsList"
+    >
+      <figure class="snip1529 snip1">
+        <img src="{{ news.image }}" alt="pr-sample13" />
+        <div class="date">
+          <span class="day">{{ news.day }}</span
+          ><span class="month">{{ news.month }}</span>
+        </div>
+        <figcaption>
+          <h3>{{ news.title }}</h3>
+        </figcaption>
+
+        <div class="hover"><i class="ion-android-open"></i></div>
+        <a routerLink="/detail/{{ news.id }}"></a>
+      </figure>
+    </div>
+  </div>
+</section>

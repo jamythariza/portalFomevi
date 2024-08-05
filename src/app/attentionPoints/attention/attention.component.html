@@ -1,0 +1,110 @@
+<app-menu></app-menu>
+<div *ngIf="visible">
+  <section class="content-news-detail">
+    <div class="container">
+      <div class="row container-titlePage">
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <app-button-back></app-button-back>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+          <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-xs-12 col-sm-6 col-md-3 card-geo">
+          <h3>Medellín</h3>
+          <p><i class="bi bi-geo"></i> Carrera 43 A No. 11 A 80 , El Poblado</p>
+          <p><i class="bi bi-telephone"></i> (574)370 66 66 Ext.1123</p>
+          <p><i class="bi bi-phone"></i> (574) 312 22 98</p>
+          <p><i class="bi bi-envelope"></i> fomevi@fomevi.com</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 card-geo">
+          <h3>Bogotá</h3>
+          <p><i class="bi bi-geo"></i> Calle 70 7 30, Piso 5 Bogotá</p>
+          <p><i class="bi bi-telephone"></i> (574) 3166789008</p>
+          <p><i class="bi bi-phone"></i> (1) 2114577</p>
+          <p><i class="bi bi-envelope"></i> auxiliarbogota2@fomevi.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div *ngIf="!visible">
+  <section>
+    <div class="container">
+      <div class="row container-titlePage">
+        <div class="col-xs-12 col-sm-12 col-md-2">
+          <app-button-back></app-button-back>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7">
+          <h2 class="text-center title-page-intrernal">
+            {{ titlePageNwetwork }}
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-5">
+          <div
+            class="wrap-network"
+            [ngsRevealSet]="{ duration: 2000 }"
+            [ngsInterval]="50"
+            [ngsSelector]="'.image'"
+          >
+            <div class="image image-instagram" ngsReveal>
+              <img src="../img/instagram.png" alt="redes sociales fomevi" />
+            </div>
+            <div class="image" ngsReveal>
+              <img
+                class="img-fluid"
+                src="../img/redes.png"
+                alt="redes sociales fomevi"
+              />
+            </div>
+            <div class="image image-wapp" ngsReveal>
+              <img
+                src="../img/whatsapp.png"
+                class="img-fluid"
+                alt="redes sociales fomevi"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <div class="social-media">
+            <div class="item">
+              <a
+                href="https://www.facebook.com/Fondo-de-Empleados-Fomevi-107420050640168/"
+                target="_blank"
+              >
+                <i class="bi bi-facebook"></i>
+                <p class="title">facebook</p>
+                <p>Fondo de Empleados Fomevi</p>
+              </a>
+            </div>
+            <div class="item">
+              <a
+                href="https://www.instagram.com/fomevi_fde/?hl=es"
+                target="_blank"
+              >
+                <i class="bi bi-instagram"></i>
+                <p class="title">instagram</p>
+                <p>fomevi_fde</p>
+              </a>
+            </div>
+            <div class="item">
+              <a
+                href="https://api.whatsapp.com/send?phone=+573054721717&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20."
+                target="_blank"
+              >
+                <i class="bi bi-whatsapp"></i>
+                <p class="title">whatsapp</p>
+                <p>316 6789008 - 305 4721717</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

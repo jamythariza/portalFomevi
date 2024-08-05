@@ -1,0 +1,17 @@
+a{
+    color: black;
+    text-decoration: none;
+}
+.title-lines{
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 20px;
+
+
+}
+
+.owl-carousel .owl-stage{
+    display: flex !important;
+}
