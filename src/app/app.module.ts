@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {
+  CommonModule,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 
-import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NgsRevealModule} from 'ng-scrollreveal';
-import { CarouselModule} from 'ngx-owl-carousel-o';
+import { NgsRevealModule } from 'ng-scrollreveal';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LatestNewsComponent } from './Components/latest-news/latest-news.component';
 
 import { NewsComponent } from './news/news.component';
@@ -28,14 +32,21 @@ import { DetailCreditlineComponent } from './detail-creditline/detail-creditline
 import { AboutusComponent } from './aboutUs/aboutus/aboutus.component';
 import { AttentionComponent } from './attentionPoints/attention/attention.component';
 import { FilesComponent } from './Files/files/files.component';
-import {ProductPageComponent} from './product/product/product.component';
+import { ProductPageComponent } from './product/product/product.component';
 import { SpinnerComponent } from './Components/spinner/spinner.component';
 import { ServiceComponent } from './service/service/service.component';
-import { SavingComponent } from './saving/saving/saving.component'
-import {MatTabsModule} from '@angular/material/tabs';
+import { SavingComponent } from './saving/saving/saving.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { DialogOverviewComponent } from './Components/dialog-overview/dialog-overview.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
+import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
+import { ArticleCategoryComponent } from './Components/Util/article-category/article-category.component';
+import { FormsModule } from '@angular/forms';
+import { ArticleImageComponent } from './articles/components/article-image/article-image.component';
+import { AuthService } from './services/auth.service';
+// import { AuthInterceptor } from './Core/Interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -63,7 +74,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SpinnerComponent,
     ServiceComponent,
     SavingComponent,
-    DialogOverviewComponent
+    DialogOverviewComponent,
+    ArticleViewPageComponent,
+    ArticleListSummaryPageComponent,
+    ArticleCategoryComponent,
+    ArticleImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,12 +89,22 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     MatTabsModule,
     MatDialogModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CommonModule,
+    FormsModule,
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-   }],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   // useClass: AuthInterceptor,
+    //   multi: true,
+    // },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

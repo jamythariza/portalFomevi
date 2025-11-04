@@ -1,0 +1,137 @@
+.card {
+    padding: 10px 0px 10px;
+    min-height: 400px;
+    max-height: 600px;
+    border-radius: 8px;
+}
+
+.card-body {
+    /* padding: 0px 15px; */
+    color: white;
+}
+
+.panel-default {
+    border: none;
+}
+
+.panel-group {
+    position: absolute;
+    bottom: -1px;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.panel-group .panel-heading+.panel-collapse>.panel-body, .panel-group .panel-heading+.panel-collapse>.list-group {
+    border: none;
+}
+
+.panel-group .panel {
+    border-radius: 0px 0px 8px 8px;
+    background-color: #FFF;
+}
+
+.panel-body {
+    min-height: 200px;
+    overflow: auto;
+    border-radius: 0px 0px 8px 8px;
+    padding: 0px 15px 10px;
+}
+
+.panel-default>.panel-heading {
+    background-color: transparent;
+}
+
+.panel-heading {
+    text-align: center;
+    padding: 0px;
+    height: 35px;
+    border: none;
+}
+
+.panel-button {
+    padding: 20px;
+    background: #007bff;
+    border-radius: 100%;
+    position: relative;
+    top: -13px;
+    z-index: 9999;
+}
+
+.panel-button .plus-minus:before{
+    content: "\f067";
+    font-family: "FontAwesome";
+}
+
+.panel-button[aria-expanded="true"] .plus-minus:before{
+    content: "\f068";
+    font-family: "FontAwesome";
+}
+
+
+
+a.panel-button:hover, a.panel-button:focus {
+    text-decoration: none;
+}
+
+a.panel-button {
+    font-size: 18px;
+    color: #FFF;
+}
+
+.card-section {
+    display: table;
+    width: 100%;
+  padding: 10px 0px 10px;
+}
+
+.card-section > .inner {
+    display: table-cell;
+    vertical-align: middle;
+    
+}
+.btn-price{
+    border-color: #FFF;
+    color: #FFF;
+}
+
+.btn-price:hover{
+    color: #FFF;
+    border-color: #007bff;
+    background-color: #007bff !important;
+}
+
+.card-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* negro semitransparente */
+    z-index: 0;
+  }
+  
+  .card-overlay .card-body {
+    position: relative;
+    /* z-index: 1; */
+  }
+
+@media (max-width: 991px) {
+    .card {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    } 
+} 
+
+@media (max-width: 768px) {
+  .card {
+    min-height: 300px;
+  }
+  .panel-body {
+    max-height: 200px;
+    font-size: 15px;
+    padding: 0px 5px;
+  }
+} 
