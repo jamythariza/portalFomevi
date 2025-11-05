@@ -1,58 +1,64 @@
-// import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
-// import { inject } from '@angular/core';
-// import { Router } from '@angular/router';
-// import Swal from 'sweetalert2';
-// import { catchError, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import {
+  HttpInterceptor,
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
-// export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-//   const token: string | null = localStorage.getItem('token');
-//   const router = inject(Router);
+@Injectable()
+export class TokenInterceptor implements HttpInterceptor {
+  constructor(private router: Router) {}
 
-//   const authReq = token
-//     ? req.clone({
-//         setHeaders: { Authorization: `Bearer ${token}` },
-//       })
-//     : req;
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
 
-//   return next(authReq).pipe(
-//     catchError((error: HttpErrorResponse) => {
-//       console.error('Interceptor caught error:', error);
+    // ✅ Clonamos la solicitud y añadimos el token si existe
+    const authReq = token
+      ? req.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+      : req;
 
-//       // ✅ Si no hay conexión con el backend
-//       if (error.status === 0 || error.status === undefined) {
-//         Swal.fire({
-//           icon: 'error',
-//           title: 'Sin conexión con el servidor',
-//           text: 'No se pudo establecer comunicación con el servidor. Por favor, verifica tu conexión.',
-//         });
-//       }
+    return next.handle(authReq).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // ⚠️ Sin conexión o servidor caído
+        if (error.status === 401) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Sesión expirada',
+            text: 'Tu sesión ha caducado. Inicia sesión nuevamente.',
+            confirmButtonText: 'Iniciar sesión',
+          }).then(() => {
+            localStorage.removeItem('token');
+            this.router.navigate(['/login']);
+          });
+        }
 
-//       // ✅ Token inválido o sesión expirada
-//       else if (error.status === 401) {
-//         Swal.fire({
-//           icon: 'warning',
-//           title: 'Sesión expirada',
-//           text: 'Tu sesión ha caducado. Inicia sesión nuevamente.',
-//           confirmButtonText: 'Iniciar sesión',
-//         }).then(() => {
-//           localStorage.removeItem('token');
-//           router.navigate(['/login']);
-//         });
-//       }
+        // ⚠️ Otros errores HTTP
+        else if (error.status >= 400) {
+          Swal.fire({
+            icon: 'error',
+            title: `Error ${error.status}`,
+            text:
+              error.error?.message ||
+              error.message ||
+              'Ha ocurrido un error inesperado. Intenta nuevamente.',
+          });
+        }
 
-//       // ✅ Otros errores HTTP
-//       else if (error.status >= 400) {
-//         Swal.fire({
-//           icon: 'error',
-//           title: `Error ${error.status}`,
-//           text:
-//             error.error?.message ||
-//             error.message ||
-//             'Ha ocurrido un error inesperado. Intenta nuevamente.',
-//         });
-//       }
-
-//       return throwError(() => error);
-//     })
-//   );
-// };
+        return throwError(() => error);
+      })
+    );
+  }
+}

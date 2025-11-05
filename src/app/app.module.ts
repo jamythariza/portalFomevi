@@ -43,9 +43,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
 import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
 import { ArticleCategoryComponent } from './Components/Util/article-category/article-category.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleImageComponent } from './articles/components/article-image/article-image.component';
 import { AuthService } from './services/auth.service';
+import { TokenInterceptor } from './Core/Interceptors/tokenInterceptor';
+import { ListMyArticlesComponent } from './articles/pages/list-my-articles/list-my-articles.component';
+import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
+import { NumberFormatPipe } from './pipes/number-format.pipe';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
+import { ValidateUserComponent } from './survey/components/validate-user/validate-user.component';
 // import { AuthInterceptor } from './Core/Interceptors/auth.interceptor';
 
 @NgModule({
@@ -79,6 +86,11 @@ import { AuthService } from './services/auth.service';
     ArticleListSummaryPageComponent,
     ArticleCategoryComponent,
     ArticleImageComponent,
+    ListMyArticlesComponent,
+    CreateMyArticleComponent,
+    LoaderComponent,
+    SurveyViewPageComponent,
+    ValidateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +104,8 @@ import { AuthService } from './services/auth.service';
     NgxPaginationModule,
     CommonModule,
     FormsModule,
+    NumberFormatPipe,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
@@ -99,11 +113,11 @@ import { AuthService } from './services/auth.service';
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   // useClass: AuthInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

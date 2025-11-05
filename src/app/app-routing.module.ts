@@ -15,6 +15,10 @@ import { ProductPageComponent } from './product/product/product.component';
 import { ServiceComponent } from './service/service/service.component';
 import { SavingComponent } from './saving/saving/saving.component';
 import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
+import { ListMyArticlesComponent } from './articles/pages/list-my-articles/list-my-articles.component';
+import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
+import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
+import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '*', pathMatch: 'full' },
@@ -32,6 +36,20 @@ const routes: Routes = [
   { path: 'services', component: ServiceComponent },
   { path: 'saving', component: SavingComponent },
   { path: 'articles-summary', component: ArticleListSummaryPageComponent },
+  { path: 'my-articles/:documentoId', component: ListMyArticlesComponent },
+  {
+    path: 'detail-my-articles/:guid/:documentoId',
+    component: CreateMyArticleComponent,
+  },
+  {
+    path: 'create-my-article/:documentoId',
+    component: CreateMyArticleComponent,
+  },
+  {
+    path: 'article-view/:guid',
+    component: ArticleViewPageComponent,
+  },
+  { path: 'survey/:guid', component: SurveyViewPageComponent },
 ];
 
 @NgModule({

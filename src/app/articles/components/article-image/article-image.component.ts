@@ -16,7 +16,6 @@ export class ArticleImageComponent {
       const currentImages = changes['images'].currentValue as ArticleImageDto[];
       if (currentImages && currentImages.length !== this.lastCount) {
         this.lastCount = currentImages.length;
-        console.log('📸 Nuevas imágenes detectadas:', currentImages);
       }
     }
   }

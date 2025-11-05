@@ -25,7 +25,7 @@
     "jquery": "^3.6.0",
     "linq": "^4.0.0",
     "ng-scrollreveal": "^2.2.0",
-    "ngx-owl-carousel-o": "^7.0.2",
+    "ngx-owl-carousel-o": "^7.0.4",
     "ngx-pagination": "^6.0.3",
     "rxjs": "~7.4.0",
     "scrollreveal": "^4.0.9",

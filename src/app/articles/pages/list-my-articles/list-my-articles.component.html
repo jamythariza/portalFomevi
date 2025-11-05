@@ -1,0 +1,51 @@
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-2xl font-bold">Mis Artículos</h2>
+            <a [routerLink]="['/create-my-article', documentoId]"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="bi bi-save fa-sm text-white-50"></i> Crear
+            </a>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <p>FOMEVI presta gratuitamente el servicio de los anuncios clasificados, pero no se hace responsable de las
+                transacciones económicas, quejas y reclamos que de ellos se deriven.</p>
+            <p>El uso del servicio debe hacerse con seriedad y responsabilidad. Los vendedores deben anunciar su
+                producto
+                con las características reales y los compradores verificar el estado y características del producto, así
+                como respetar el acuerdo de pago.</p>
+        </div>
+
+        <hr />
+        <table class="table table-striped table-bordered" *ngIf="filteredData.length > 0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Titulo</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                    <th>Estado del Artículo</th>
+                    <th>Fecha de creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of filteredData">
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.categoryName }}</td>
+                    <td [ngStyle]="{'color': item.stateName == 'Rechazada' ? '#dc3545' : '#155724'}">
+                        {{ item.stateName }}
+                    </td>
+                    <td>
+                        {{ item.stateArticle }}
+                    </td>
+                    <td>{{ item.dateCreated | date:'yyyy/MM/dd' }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                            [routerLink]="['/detail-my-articles', item.guid, documentoId]"><i
+                                class="bi bi-pencil-fill"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

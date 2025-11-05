@@ -4,6 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-article-view-page',
@@ -17,12 +18,15 @@ export class ArticleViewPageComponent implements OnInit {
   safeDescription: SafeHtml | null = null;
 
   constructor(
+    private loaderService: LoaderService,
     private service: ArticleService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
+    this.loaderService.show();
+
     this.guid = this.route.snapshot.paramMap.get('guid') ?? '';
 
     if (this.guid && this.guid !== 'null') {
@@ -44,6 +48,7 @@ export class ArticleViewPageComponent implements OnInit {
             );
           }
         }
+        this.loaderService.hide();
       },
       (error) => {
         swal.fire({
@@ -51,6 +56,7 @@ export class ArticleViewPageComponent implements OnInit {
           title: 'Oops...',
           text: error.error,
         });
+        this.loaderService.hide();
       }
     );
   }

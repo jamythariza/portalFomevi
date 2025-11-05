@@ -1,0 +1,252 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <div class="col col-12 col-sm-12 col-12 col-lg-6 col-xl-6 text-center">
+
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Publicar artículo</h2>
+
+                <form [formGroup]="articleForm" id="articleForm">
+                    <ul id="progressbar">
+                        <li [class.active]="step >= 1" id="account">Información</li>
+                        <li [class.active]="step >= 2" id="personal">Vendedor</li>
+                        <li [class.active]="step >= 3" id="payment">Imágenes</li>
+                        <li [class.active]="step >= 4" id="confirm">Terminado</li>
+                    </ul>
+
+                    <div class="progress">
+                        <!-- <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            [style.width]="progressWidth()" role="progressbar"></div> -->
+                    </div>
+
+                    <!-- Step 1 -->
+                    <fieldset *ngIf="step === 1">
+                        <div class="form-card m-4">
+                            <div class="row mb-3">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Información del Artículo</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 1 - 4</h2>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-group">
+                                    <label for="image">Imagen inicial del artículo</label>
+                                    <input type="file" class="form-control" id="image" (change)="onFileSelected($event)"
+                                        accept="image/*">
+                                    <div *ngIf="imagePreview">
+                                        <img [src]="imagePreview" alt="Vista previa" class="img-thumbnail mt-2 "
+                                            style="max-width: 150px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <label for="title">Título</label>
+                                    <input type="text" class="form-control" id="title" formControlName="title" />
+                                    <div *ngIf="articleForm.get('title')?.invalid && articleForm.get('title')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('title')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="title">Precio</label>
+                                    <input type="text" class="form-control"
+                                        [value]="articleForm.get('price')?.value | numberFormat"
+                                        (input)="validator($event, 'price')" formControlName="price">
+
+                                    <div *ngIf="articleForm.get('price')?.invalid && articleForm.get('price')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('price')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('price')?.errors?.['pattern']">El campo es
+                                            númerico.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <label for="name">Categoría</label>
+                                    <app-article-category (valueChange)="onCategoryChange($event)"
+                                        [selectedValue]="articleForm.get('categoryGuid')?.value"></app-article-category>
+                                    <div
+                                        *ngIf="articleForm.get('categoryGuid')?.invalid && articleForm.get('categoryGuid')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('categoryGuid')?.errors?.['required']">El campo
+                                            es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label for="name">Estado</label>
+                                    <select class="form-select" formControlName="stateArticle"
+                                        (ngModelChange)="onStateArticleChange($event)">
+                                        <option selected disabled value="">Seleccionar...</option>>
+                                        <option value="Nuevo">Nuevo</option>
+                                        <option value="Usado">Usado</option>
+                                    </select>
+                                    <div
+                                        *ngIf="articleForm.get('stateArticle')?.invalid && articleForm.get('stateArticle')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('stateArticle')?.errors?.['required']">El campo
+                                            es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label for="ubication">Ubicación</label>
+                                    <input type="text" class="form-control" id="ubication"
+                                        formControlName="ubication" />
+                                    <div
+                                        *ngIf="articleForm.get('ubication')?.invalid && articleForm.get('ubication')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('ubication')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="date">Comentarios</label>
+                                    <textarea class="form-control" id="description"
+                                        formControlName="description"></textarea>
+                                    <!-- <editor apiKey="v9dt5dfkhxtrrgj839sotxuxazb1dkytiueiy3djpdgaaxt1"
+                                        formControlName="description" [init]="{
+                                height: 200,
+                                menubar: false,
+                                plugins: 'lists link image table',
+                                toolbar:
+                                  'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | removeformat'
+                              }"></editor> -->
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" class="next action-button" value="Siguiente" (click)="nextStep()"
+                            [disabled]="!validatedFirstStep" />
+                    </fieldset>
+
+                    <!-- Step 2 -->
+                    <fieldset *ngIf="step === 2">
+                        <div class="form-card m-4">
+                            <div class="row mb-3">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Información del Vendedor:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 2 - 4</h2>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <label for="email">Nombre</label>
+                                    <input type="text" class="form-control" id="fullName" formControlName="fullName" />
+                                    <div
+                                        *ngIf="articleForm.get('fullName')?.invalid && articleForm.get('fullName')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('fullName')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" formControlName="email" />
+                                    <div *ngIf="articleForm.get('email')?.invalid && articleForm.get('email')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('email')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                        <span class="text-danger" *ngIf="articleForm.get('email')?.errors?.['email']">El
+                                            email debe ser
+                                            valido..</span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label for="email">Teléfono</label>
+                                    <input type="text" class="form-control" id="phone" formControlName="phone" />
+                                    <div *ngIf="articleForm.get('phone')?.invalid && articleForm.get('phone')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('phone')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                        <span class="text-danger"
+                                            *ngIf="articleForm.get('phone')?.errors?.['pattern']">El campo es
+                                            númerico.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="button" class="next action-button" value="Siguiente" (click)="nextStep()"
+                            [disabled]="!validatedSecondStep" />
+                        <input type="button" class="previous action-button-previous" value="Anterior"
+                            (click)="prevStep()" />
+                    </fieldset>
+
+                    <!-- Step 3 -->
+                    <fieldset *ngIf="step === 3">
+                        <div class="form-card m-4">
+                            <div class="row mb-3">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Cargar Imágenes:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 3 - 4</h2>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <input class="form-control" type="file" #imageInput id="imageArticle"
+                                        (change)="onFileImageSelected($event)" accept="image/*">
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-outline-success" (click)="saveImage()">Cargar
+                                        Imagen</button>
+                                </div>
+                            </div>
+                            <app-article-image *ngIf="articleImages && articleImages.length > 0"
+                                [images]="articleImages" [guid]="guid ?? ''"></app-article-image>
+
+                        </div>
+                        <button type="button" class="next action-button"
+                            [disabled]="articleForm.invalid || !validatedThirdStep" (click)="save()">Guardar</button>
+                        <input type="button" class="previous action-button-previous" value="Anterior"
+                            (click)="prevStep()" />
+                    </fieldset>
+
+                    <!-- Step 4 -->
+                    <fieldset *ngIf="step === 4">
+                        <div class="form-card m-4">
+                            <div class="row mb-3">
+                                <div class="col-7">
+                                    <h2 class="fs-title"></h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 4 - 4</h2>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <h2 class="purple-text text-center"><strong>Correcto !</strong></h2>
+                            <br />
+                            <div class="row justify-content-center">
+                                <div class="col-4">
+                                    <a [routerLink]="['/my-articles', documentoId]"
+                                        class="next action-button text-center" style="width: 140px;">
+                                        Ir a mis artículos
+                                    </a>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">El artículo se ha publicado correctamente</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

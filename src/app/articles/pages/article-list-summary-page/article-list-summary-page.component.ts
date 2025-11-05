@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { AuthService } from 'src/app/services/auth.service';
 import { login } from 'src/app/models/login';
 import { environment } from 'src/environments/environment';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-article-list-summary-page',
@@ -17,34 +18,28 @@ export class ArticleListSummaryPageComponent implements OnInit {
   search: string = '';
   selectedCategory: string = '';
 
-  constructor(private service: ArticleService, private auth: AuthService) {}
+  constructor(
+    private service: ArticleService,
+    private auth: AuthService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit() {
-    debugger;
-    var credentials: login = {
-      user: environment.user,
-      password: environment.password,
-      email: '',
-    };
-
-    this.auth.login(credentials).subscribe({
-      next: () => {
-        console.log('Autenticado correctamente');
-        this.Info();
-      },
-      error: (err) => console.error('Error en login:', err),
-    });
+    this.loaderService.show();
+    this.Info();
   }
 
   Info() {
     this.service.GetArticle().subscribe(
       (response) => {
         if (response.success) {
-          this.articles = response.content;
-          this.filteredData = response.content.filter(
+          this.articles = response.content.filter(
             (item) => item.stateName === 'Aprobada'
           );
+          this.filteredData = this.articles;
         }
+
+        this.loaderService.hide();
       },
       (error) => {
         swal.fire({
@@ -53,6 +48,7 @@ export class ArticleListSummaryPageComponent implements OnInit {
           icon: 'error',
           confirmButtonText: 'Continuar',
         });
+        this.loaderService.hide();
       }
     );
   }

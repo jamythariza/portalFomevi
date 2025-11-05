@@ -6,17 +6,19 @@ import {
 } from 'src/app/models/response.interfaces';
 import { RequestService } from 'src/app/services/request.service';
 import { environment } from 'src/environments/environment';
+import { ArticleRequestDto } from '../model/article-request-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
+  url: string = 'PortalFomeviArticle';
   constructor(public api: RequestService) {}
 
   GetArticle(): Observable<ApiResponse> {
     return this.api.req({
       method: 'get',
-      api: 'PortalFomeviArticle/Article/ArticleGetAll',
+      api: `${this.url}/Article/ArticleGetAll`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -25,7 +27,7 @@ export class ArticleService {
   GetCategoryArticle(): Observable<ApiResponse> {
     return this.api.req({
       method: 'get',
-      api: 'PortalFomeviArticle/Category',
+      api: `${this.url}/Category`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -33,7 +35,6 @@ export class ArticleService {
 
   getArticleById(guid: string): Observable<ApiResponseSingle> {
     if (!guid || guid.toLowerCase() === 'null') {
-      console.warn('GUID inválido, no se enviará la petición.');
       return of({
         success: false,
         message: 'GUID inválido',
@@ -42,8 +43,44 @@ export class ArticleService {
 
     return this.api.req({
       method: 'get',
-      api: `PortalFomeviArticle/Article/Article_GetById/${guid}`,
-      uri: environment,
+      api: `${this.url}/Article/Article_GetById/${guid}`,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
+  }
+
+  ArticleGetByDocument(documentoId: string): Observable<ApiResponse> {
+    if (!documentoId || documentoId.toLowerCase() === 'null') {
+      return of({
+        success: false,
+        message: 'GUID inválido',
+      } as ApiResponseSingle);
+    }
+
+    return this.api.req({
+      method: 'get',
+      api: `${this.url}/Article/ArticleGetByDocument/${documentoId}`,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
+  }
+
+  createArticle(dto: ArticleRequestDto): Observable<ApiResponse> {
+    return this.api.req({
+      method: 'post',
+      api: `${this.url}/Article/ArticleInsert`,
+      uri: environment.apiBaseUrl,
+      body: dto,
+      withCredentials: true,
+    });
+  }
+
+  updateArticle(dto: ArticleRequestDto): Observable<ApiResponse> {
+    return this.api.req({
+      method: 'post',
+      api: `${this.url}/Article/ArticleUpdate/`,
+      uri: environment.apiBaseUrl,
+      body: dto,
       withCredentials: true,
     });
   }
