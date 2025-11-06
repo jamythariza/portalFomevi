@@ -38,7 +38,7 @@ import { ServiceComponent } from './service/service/service.component';
 import { SavingComponent } from './saving/saving/saving.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DialogOverviewComponent } from './Components/dialog-overview/dialog-overview.component';
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
 import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
@@ -54,6 +54,12 @@ import { LoaderComponent } from './Components/loader/loader.component';
 import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
 import { ValidateUserComponent } from './survey/components/validate-user/validate-user.component';
 // import { AuthInterceptor } from './Core/Interceptors/auth.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -106,6 +112,12 @@ import { ValidateUserComponent } from './survey/components/validate-user/validat
     FormsModule,
     NumberFormatPipe,
     ReactiveFormsModule,
+    MatOptionModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     AuthService,

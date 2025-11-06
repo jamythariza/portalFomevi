@@ -132,6 +132,13 @@
                                                 [for]="dateFinally"></mat-datepicker-toggle>
                                             <mat-datepicker #dateFinally></mat-datepicker>
                                         </mat-form-field> -->
+                                        <mat-form-field appearance="outline" class="small-field">
+                                            <mat-label>Seleccionar Fecha</mat-label>
+                                            <input matInput [matDatepicker]="dateFinally" formControlName="response">
+                                            <mat-datepicker-toggle matSuffix
+                                                [for]="dateFinally"></mat-datepicker-toggle>
+                                            <mat-datepicker #dateFinally></mat-datepicker>
+                                        </mat-form-field>
                                         <div class="text-danger"
                                             *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
                                             Debes seleccionar la fecha.
