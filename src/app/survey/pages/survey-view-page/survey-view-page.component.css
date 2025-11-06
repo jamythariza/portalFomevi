@@ -11,7 +11,7 @@
     box-shadow: none; 
     display: block;
     font-family: inherit;
-    color: rgb(4, 69, 175);
+    color: rgb(27, 27, 27);
     padding-block-start: 0px;
     padding-block-end: var(--spacing-100);
     padding-inline: 0px;
@@ -29,7 +29,6 @@
     transform: translateZ(0px);
     -webkit-font-smoothing: antialiased;
     line-height: unset;
-    -webkit-text-fill-color: rgb(180, 199, 231);
     animation: 1ms 
 ease 0s 1 normal none running native-autofill-in;
     transition: background-color 1e+08s, box-shadow 0.1s 

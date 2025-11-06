@@ -49,7 +49,7 @@
                                 </div>
                                 <!-- Tipo: Texto Largo -->
                                 <div *ngSwitchCase="'Texto Largo'">
-                                    <div class="form-group pl-4">
+                                    <div class="pl-4">
                                         <textarea class="form-control" rows="5"
                                             placeholder="Escribe tu respuesta aquí..."
                                             formControlName="response"></textarea>
@@ -64,7 +64,7 @@
 
                                 <!-- Tipo: Lista -->
                                 <div *ngSwitchCase="'Lista Despegable'">
-                                    <div class="form-group pl-4">
+                                    <div class="pl-4">
                                         <select class="form-select" formControlName="response">
                                             <option value="" disabled selected>Selecciona una opción</option>
                                             <option *ngFor="let opt of question.value.options"
@@ -125,17 +125,10 @@
                                 </div>
                                 <div *ngSwitchCase="'Fecha'">
                                     <div class="form-group pl-4">
-                                        <!-- <mat-form-field appearance="outline" class="small-field">
-                                            <mat-label>Seleccionar Fecha</mat-label>
-                                            <input matInput [matDatepicker]="dateFinally" formControlName="response">
-                                            <mat-datepicker-toggle matIconSuffix
-                                                [for]="dateFinally"></mat-datepicker-toggle>
-                                            <mat-datepicker #dateFinally></mat-datepicker>
-                                        </mat-form-field> -->
                                         <mat-form-field appearance="outline" class="small-field">
                                             <mat-label>Seleccionar Fecha</mat-label>
                                             <input matInput [matDatepicker]="dateFinally" formControlName="response">
-                                            <mat-datepicker-toggle matSuffix
+                                            <mat-datepicker-toggle matIconSuffix
                                                 [for]="dateFinally"></mat-datepicker-toggle>
                                             <mat-datepicker #dateFinally></mat-datepicker>
                                         </mat-form-field>
@@ -147,12 +140,14 @@
                                 </div>
                                 <div *ngSwitchCase="'Hora'">
                                     <div class="form-group pl-4">
-                                        <!-- <mat-form-field>
-                                            <mat-label>Seleccionar Hora</mat-label>
-                                            <input matInput [matTimepicker]="picker" formControlName="response">
-                                            <mat-timepicker-toggle matIconSuffix [for]="picker" />
-                                            <mat-timepicker #picker />
-                                        </mat-form-field> -->
+                                        <mat-form-field>
+                                            <mat-label>Seleccione la hora</mat-label>
+                                            <input matInput [ngxMatTimepicker]="picker" formControlName="response"
+                                                readonly>
+                                            <ngx-mat-timepicker-toggle matSuffix
+                                                [for]="picker"></ngx-mat-timepicker-toggle>
+                                            <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+                                        </mat-form-field>
                                         <div class="text-danger"
                                             *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
                                             Debes seleccionar la hora.

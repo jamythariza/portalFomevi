@@ -19,6 +19,7 @@ import { ListMyArticlesComponent } from './articles/pages/list-my-articles/list-
 import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
 import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
 import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
+import { PqrsValidateUserPageComponent } from './pqrs/page/pqrs-validate-user-page/pqrs-validate-user-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '*', pathMatch: 'full' },
@@ -50,6 +51,7 @@ const routes: Routes = [
     component: ArticleViewPageComponent,
   },
   { path: 'survey/:guid', component: SurveyViewPageComponent },
+  { path: 'pqrs', component: PqrsValidateUserPageComponent },
 ];
 
 @NgModule({

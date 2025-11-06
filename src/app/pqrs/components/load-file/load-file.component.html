@@ -1,0 +1,6 @@
+<div class="upload-container">
+    <div class="form-group upload-item">
+        <input type="file" #fileInput accept=".pdf" (change)="onFileSelectedDoc($event)">
+        <span class="file-name" *ngIf="selectedFileDoc"><i class="fas  fa-check-circle"></i> Cargado.</span>
+    </div>
+</div>

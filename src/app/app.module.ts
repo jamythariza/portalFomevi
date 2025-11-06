@@ -60,6 +60,13 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { PqrsValidateUserPageComponent } from './pqrs/page/pqrs-validate-user-page/pqrs-validate-user-page.component';
+import { PqrsCreateComponent } from './pqrs/components/pqrs-create/pqrs-create.component';
+import { PqrsTypePqrsOptionComponent } from './pqrs/components/pqrs-type-pqrs-option/pqrs-type-pqrs-option.component';
+import { PqrsTypeCateoryComponent } from './pqrs/components/pqrs-type-cateory/pqrs-type-cateory.component';
+import { LoadFileComponent } from './pqrs/components/load-file/load-file.component';
+import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +104,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     LoaderComponent,
     SurveyViewPageComponent,
     ValidateUserComponent,
+    PqrsValidateUserPageComponent,
+    PqrsCreateComponent,
+    PqrsTypePqrsOptionComponent,
+    PqrsTypeCateoryComponent,
+    LoadFileComponent,
+    PqrsMyPqrsComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,6 +131,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxMatTimepickerModule,
   ],
   providers: [
     AuthService,

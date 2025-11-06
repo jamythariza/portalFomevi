@@ -1,0 +1,124 @@
+<app-menu></app-menu>
+<div class="container py-4">
+    <div class="row p-2 mb-4 bg-body-tertiary rounded-3">
+        <h1>Peticiones, Quejas, Recursos y Sugerencias</h1>
+        <div class="row">
+            <div class="col-9">
+                <p>
+                    Las solicitudes para resolver inconsistencias relacionadas con la <strong>recuperación de
+                        clave</strong>
+                    para ingresar al <strong> Estado de Cuenta</strong>,
+                    se atienden directamente comunicándose al WhatsApp 316 6044067 con <strong>Laura Muñoz</strong> o
+                    por
+                    teams/correo: <strong> <a
+                            href="mailto:{{correo}}?subject=Consulta&body=Hola, recuperación de clave.">{{correo}}</a>
+                    </strong>
+                </p>
+            </div>
+            <div class="col-3">
+                <div class="alert alert-info">
+                    <a href="../Files/Reglamento_PQRS.pdf" target="_blank"><i
+                            class="bi bi-file-earmark-pdf"></i>&nbsp;Ver
+                        Reglamento General PQRS</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pqrs-tab" data-bs-toggle="tab" data-bs-target="#pqrs"
+                            type="button" role="tab" aria-controls="pqrs" aria-selected="true">
+                            <i class="fa fa-plus-circle"></i> Adicionar PQRS
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="consulting-tab" data-bs-toggle="tab" data-bs-target="#consulting"
+                            type="button" role="tab" aria-controls="consulting" aria-selected="false">
+                            <i class="fa fa-search"></i> Consultar PQRS
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-4" id="myTabContent">
+
+                    <div class="tab-content mt-4" id="myTabContent">
+                        <div class="tab-pane fade show active" id="pqrs" role="tabpanel" aria-labelledby="pqrs-tab">
+                            <form [formGroup]="pqrsForm">
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="phone">Documento</label>
+                                            <input type="text" class="form-control" id="document"
+                                                formControlName="document" />
+                                            <div
+                                                *ngIf="pqrsForm.get('document')?.invalid && pqrsForm.get('document')?.touched">
+                                                <span class="text-danger"
+                                                    *ngIf="pqrsForm.get('document')?.errors?.['required']">El
+                                                    campo
+                                                    es obligatorio.</span>
+                                                <span class="text-danger"
+                                                    *ngIf="pqrsForm.get('document')?.errors?.['pattern']">Solo
+                                                    se
+                                                    permiten números.</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4 mt-4">
+                                        <button type="submit" class="btn btn-primary" [disabled]="pqrsForm.invalid"
+                                            (click)="validateUserByDocument()">Adicionar</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div *ngIf="userIsValid">
+                                <app-pqrs-create *ngIf="pqrsUserValidateModel"
+                                    [pqrsUserValidate]="pqrsUserValidateModel"></app-pqrs-create>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="consulting" role="tabpanel" aria-labelledby="consulting-tab">
+                            <form [formGroup]="pqrsForm2">
+                                <div class="row mb-4">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="phone">Radicado</label>
+                                            <input type="text" class="form-control" id="code" formControlName="code" />
+                                            <div
+                                                *ngIf="pqrsForm2.get('code')?.invalid && pqrsForm2.get('code')?.touched">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="phone">Documento</label>
+                                            <input type="text" class="form-control" id="document"
+                                                formControlName="document" />
+                                            <div
+                                                *ngIf="pqrsForm2.get('document')?.invalid && pqrsForm2.get('document')?.touched">
+                                                <span class="text-danger"
+                                                    *ngIf="pqrsForm2.get('document')?.errors?.['pattern']">Solo
+                                                    se
+                                                    permiten números.</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4 mt-4">
+                                        <button type="submit" class="btn btn-primary" [disabled]="pqrsForm2.invalid"
+                                            (click)="findByDocument()">Consultar</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div class="row mt-4 mb-4" *ngIf="filter">
+                                <app-pqrs-my-pqrs [filter]="filter"></app-pqrs-my-pqrs>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

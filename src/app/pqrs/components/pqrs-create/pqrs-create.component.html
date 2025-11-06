@@ -1,0 +1,66 @@
+<form [formGroup]="pqrsForm">
+    <div class="row mb-4">
+        <div class="form-group col-6">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" formControlName="name" />
+            <div *ngIf="pqrsForm.get('name')?.invalid && pqrsForm.get('name')?.touched">
+                <span class="text-danger" *ngIf="pqrsForm.get('name')?.errors?.['required']">El campo es
+                    obligatorio.</span>
+            </div>
+        </div>
+        <div class="form-group col-6">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" formControlName="email" />
+            <div *ngIf="pqrsForm.get('email')?.invalid && pqrsForm.get('email')?.touched">
+                <span class="text-danger" *ngIf="pqrsForm.get('email')?.errors?.['required']">El campo es
+                    obligatorio.</span>
+                <span class="text-danger" *ngIf="pqrsForm.get('email')?.errors?.['email']">El email debe ser
+                    valido..</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="form-group col-6">
+            <label for="estado">Trámites</label>
+            <app-pqrs-type-cateory [selectedValue]="pqrsForm.get('pqrsTypeGuid')?.value"
+                (valueChange)="onPqrsCategory($event)"></app-pqrs-type-cateory>
+        </div>
+        <div class="form-group col-6">
+            <label for="estado">Tipo Tramite</label>
+            <app-pqrs-type-pqrs-option [selectedValue]="pqrsForm.get('pqrsTypeCategoryGuid')?.value"
+                [selectedGuidType]="pqrsForm.get('pqrsTypeGuid')?.value"
+                (valueChange)="onPqrsCategoryOption($event)"></app-pqrs-type-pqrs-option>
+        </div>
+    </div>
+    <div class="row mb-4" *ngIf="pqrsForm.get('nameFile')?.value == ''">
+        <div class="form-group col-12">
+            <a (click)="loadFile()" class="text-link">Deseas adjuntar documento?</a>
+        </div>
+    </div>
+    <div class="row mb-4" *ngIf="enableDocument">
+        <div class="form-group col-3">
+            <label for="document">Documento o Soporte</label>
+            <app-load-file (documentsUploaded)="onFileSelectedDoc($event)"
+                *ngIf="pqrsForm.get('nameFile')?.value == ''"></app-load-file>
+        </div>
+    </div>
+    <div class="row mb-4" *ngIf="enableDocument">
+        <div class="form-group col-3">
+            <div *ngIf="pqrsForm.get('nameFile')?.value != '' && pqrsForm.get('nameFile')?.value != null">
+                <button (click)="downloadFile()"
+                    class="d-none d-sm-inline-block btn btn-sm btn-outline-primary shadow-sm mb-4"><i
+                        class="fas fa-download fa-sm text-primary-50"></i> {{pqrsForm.get('nameFile')?.value}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="form-group col-12">
+            <label for="date">Comentarios</label>
+            <textarea id="descriptionpqrs" #descriptionpqrs formControlName="description">
+              </textarea>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" [disabled]="pqrsForm.invalid" (click)="save()">Guardar</button>
+</form>
