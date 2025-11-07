@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://localhost/',
+  // apiBaseUrl: 'https://localhost/',
+  apiBaseUrl: 'https://www.fomevi.com/',
   secretKey: 'eQmiXDunxiVzNzaeYN4RqUa79TfyEbp0',
   iv: '3f8a9b5c1d2e3f4a',
   user: 'juanperez',

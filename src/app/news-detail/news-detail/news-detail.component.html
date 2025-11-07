@@ -17,14 +17,12 @@
         <div class="col-xs-12 col-sm-12 col-md-8">
           <h2>{{ newSingle?.name }}</h2>
           <p class="dateCreated">
-            <!-- <i class="bi bi-calendar-date"></i> {{ dateNewsList }} -->
+            <i class="bi bi-calendar-date"></i> {{ newSingle?.dateCreation }}
           </p>
           <hr />
           <div [innerHTML]="safeDescription"></div>
-          <p *ngIf="newSingle?.nameFile != ''">
-            <!-- <a href="https://www.fomevi.com/fomevi/comun/descarga.aspx?IdNovedades={{
-                detailId
-              }}"><i class="bi bi-file-pdf"></i> {{ newSingle?.nameFile}}</a> -->
+          <p *ngIf="newSingle?.nameFile?.trim() !== '' && (newSingle?.content?.length || 0) > 0">
+            <a (click)="download()" class="nav-link"><i class="bi bi-file-pdf"></i> {{ newSingle?.nameFile}}</a>
           </p>
           <hr />
           <a routerLink="/news" class="btn button from-left"><span>Más Novedades</span></a>

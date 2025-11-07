@@ -66,4 +66,20 @@ export class NewsDetailComponent implements OnInit {
       }
     );
   }
+
+  download() {
+    if (this.newSingle && this.newSingle?.content) {
+      const linkSource = `data:application/octet-stream;base64,${this.newSingle.content}`;
+      const downloadLink = document.createElement('a');
+      downloadLink.href = linkSource;
+      downloadLink.download = this.newSingle.nameFile || 'downloadedFile';
+      downloadLink.click();
+    } else {
+      swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No hay archivo para descargar.',
+      });
+    }
+  }
 }

@@ -45,16 +45,18 @@ export class RequestService {
 
           // ✅ Caso 401 o token expirado
           if (error.status === 401 || error.error.isTrusted) {
-            swal
-              .fire({
-                icon: 'warning',
-                title: 'Inicio de Sesión',
-                text: error.error.message,
-              })
-              .then(() => {
-                localStorage.removeItem('token');
-                this.router.navigate(['/login']);
-              });
+            swal;
+            // .fire({
+            //   icon: 'warning',
+            //   title: 'Inicio de Sesión',
+            //   text: error.error.message,
+            // })
+            // .then(() => {
+            //   localStorage.removeItem('token');
+            //   this.router.navigate(['/login']);
+            // });
+            localStorage.removeItem('token');
+            this.router.navigate(['/login']);
             return throwError(() => new Error(message));
           }
 
