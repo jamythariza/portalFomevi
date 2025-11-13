@@ -13,9 +13,6 @@ import {
 import { ArticleService } from '../../services/article.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { login } from 'src/app/models/login';
-import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-my-article',
@@ -47,7 +44,6 @@ export class CreateMyArticleComponent implements OnInit {
     private fb: FormBuilder,
     private service: ArticleService,
     private routers: Router,
-    private auth: AuthService,
     private route: ActivatedRoute
   ) {
     this.articleForm = this.fb.group({
@@ -81,19 +77,7 @@ export class CreateMyArticleComponent implements OnInit {
     this.guid = this.route.snapshot.paramMap.get('guid') ?? null;
     this.documentoId = this.route.snapshot.paramMap.get('documentoId') ?? '';
 
-    var credentials: login = {
-      user: environment.user,
-      password: environment.password,
-      email: '',
-    };
-
-    if (this.documentoId && this.documentoId !== 'null')
-      this.auth.login(credentials).subscribe({
-        next: () => {
-          this.getInfo();
-        },
-        error: (err) => console.error('Error en login:', err),
-      });
+    if (this.documentoId && this.documentoId !== 'null') this.getInfo();
 
     this.articleForm.valueChanges.subscribe(() => {
       this.validateFirstStep();

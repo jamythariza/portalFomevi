@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleDto } from '../../model/article-request-dto';
 import { ArticleService } from '../../services/article.service';
 import swal from 'sweetalert2';
-import { AuthService } from 'src/app/services/auth.service';
-import { login } from 'src/app/models/login';
-import { environment } from 'src/environments/environment';
 import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
@@ -20,7 +17,6 @@ export class ArticleListSummaryPageComponent implements OnInit {
 
   constructor(
     private service: ArticleService,
-    private auth: AuthService,
     private loaderService: LoaderService
   ) {}
 

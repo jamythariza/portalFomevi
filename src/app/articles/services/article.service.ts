@@ -7,18 +7,18 @@ import {
 import { RequestService } from 'src/app/services/request.service';
 import { environment } from 'src/environments/environment';
 import { ArticleRequestDto } from '../model/article-request-dto';
+import { ApiConstants } from 'src/app/Core/Constants/apiConstants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
-  url: string = 'PortalFomeviArticle';
   constructor(public api: RequestService) {}
 
   GetArticle(): Observable<ApiResponse> {
     return this.api.req({
       method: 'get',
-      api: `${this.url}/Article/ArticleGetAll`,
+      api: `${ApiConstants.GET_ARTICLES}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -27,7 +27,7 @@ export class ArticleService {
   GetCategoryArticle(): Observable<ApiResponse> {
     return this.api.req({
       method: 'get',
-      api: `${this.url}/Category`,
+      api: `${ApiConstants.GET_ARTICLES}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -43,7 +43,7 @@ export class ArticleService {
 
     return this.api.req({
       method: 'get',
-      api: `${this.url}/Article/Article_GetById/${guid}`,
+      api: `${ApiConstants.GET_ARTICLES}/${guid}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -59,7 +59,7 @@ export class ArticleService {
 
     return this.api.req({
       method: 'get',
-      api: `${this.url}/Article/ArticleGetByDocument/${documentoId}`,
+      api: `${ApiConstants.GET_ARTICLESBYDOCUMENT}/${documentoId}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -68,7 +68,7 @@ export class ArticleService {
   createArticle(dto: ArticleRequestDto): Observable<ApiResponse> {
     return this.api.req({
       method: 'post',
-      api: `${this.url}/Article/ArticleInsert`,
+      api: `${ApiConstants.GET_ARTICLE_INSERT}`,
       uri: environment.apiBaseUrl,
       body: dto,
       withCredentials: true,
@@ -78,7 +78,7 @@ export class ArticleService {
   updateArticle(dto: ArticleRequestDto): Observable<ApiResponse> {
     return this.api.req({
       method: 'post',
-      api: `${this.url}/Article/ArticleUpdate/`,
+      api: `${ApiConstants.GET_ARTICLE_UPDATE}`,
       uri: environment.apiBaseUrl,
       body: dto,
       withCredentials: true,

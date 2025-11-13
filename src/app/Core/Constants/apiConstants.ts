@@ -1,8 +1,6 @@
 export class ApiConstants {
   // ========== BASE PATHS ==========
-  private static readonly BASE_CONFIG =
-    'PortalFomeviConfiguration/Configuration/';
-  private static readonly BASE_PQRS = 'PortalFomeviPQRS/pqrs/';
+  private static readonly BASE_CONFIG = 'PortalFomeviWebSite/External/';
 
   // ========== HELPERS ==========
   private static withBase = (base: string, action: string) =>
@@ -58,41 +56,68 @@ export class ApiConstants {
   // BANNER
   static readonly GET_BANNER = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'GetBanner'
+    'Banner'
   );
 
   // PQRS TYPE CATEGORY
   static readonly GET_PQRSTYPECATEGORY = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'PqrsTypeCategoryGetByPqrsTypeId'
+    'PqrsTypeCategory'
   );
 
   static readonly GET_PQRSTYPE = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'GetPqrsTypes'
+    'PqrsTypes'
   );
 
   static readonly INSERT_PQRS = ApiConstants.withBase(
-    ApiConstants.BASE_PQRS,
-    'InsertPqrs'
+    ApiConstants.BASE_CONFIG,
+    'Pqrs'
   );
 
   static readonly GET_PQRSBY_DOCUMENT = ApiConstants.withBase(
-    ApiConstants.BASE_PQRS,
-    'GetSearcherByUserPqrs'
+    ApiConstants.BASE_CONFIG,
+    'SearcherByUserPqrs'
   );
 
   // NEWS
   static readonly GET_NEW = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'GetNew'
+    'News'
   );
   static readonly GET_NEW_CURRENT = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'GetCurrentNews'
+    'CurrentNews'
   );
   static readonly GET_NEW_BY_ID = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'GetNewById'
+    'News'
+  );
+
+  // ARTICLES
+  static readonly GET_ARTICLES = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'articles'
+  );
+
+  // ARTICLES
+  static readonly GET_ARTICLESBYID = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'Article'
+  );
+
+  static readonly GET_ARTICLESBYDOCUMENT = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'ArticleByDocument'
+  );
+
+  static readonly GET_ARTICLE_INSERT = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'Article'
+  );
+
+  static readonly GET_ARTICLE_UPDATE = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'UpdateArticles'
   );
 }

@@ -45,7 +45,6 @@ import { ArticleListSummaryPageComponent } from './articles/pages/article-list-s
 import { ArticleCategoryComponent } from './Components/Util/article-category/article-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleImageComponent } from './articles/components/article-image/article-image.component';
-import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './Core/Interceptors/tokenInterceptor';
 import { ListMyArticlesComponent } from './articles/pages/list-my-articles/list-my-articles.component';
 import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
@@ -134,7 +133,6 @@ import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs
     NgxMatTimepickerModule,
   ],
   providers: [
-    AuthService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,

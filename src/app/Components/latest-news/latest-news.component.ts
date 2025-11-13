@@ -28,10 +28,6 @@ export class LatestNewsComponent implements OnInit {
       (response) => {
         if (response.success) {
           this.news = response.content;
-
-          const fecha = new Date(this.news[0].dateCreation);
-          this.day = fecha.getDate().toString();
-          this.month = fecha.toLocaleString('es-ES', { month: 'long' });
         }
       },
       (error) => {
