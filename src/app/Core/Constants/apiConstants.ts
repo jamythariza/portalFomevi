@@ -120,4 +120,24 @@ export class ApiConstants {
     ApiConstants.BASE_CONFIG,
     'UpdateArticles'
   );
+
+  static readonly GET_USERS = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'Users'
+  );
+
+  static readonly GET_CATEGORIES = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'Categories'
+  );
+
+  static readonly GET_CATEGORIES_BYID = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'CategoriesByAggrement'
+  );
+
+  static readonly GET_RELATIONGROUP = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'RegulationGroup'
+  );
 }

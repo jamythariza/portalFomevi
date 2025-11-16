@@ -15,32 +15,25 @@
     <div *ngIf="!loader">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4">
-          <img
-            src="{{ agreements.image }}"
-            alt="pr-sample13"
-            class="img-fluid"
-            alt="novedades fomevi"
-          />
+          <img src="{{ agreements.imageBase64 }}" alt="pr-sample13" class="img-fluid" alt="novedades fomevi" />
         </div>
         <div class="col-xs-12 col-sm-12 col-md-7 ms-4 not-margin">
-          <h2>{{ agreements.title }}</h2>
+          <h2>{{ agreements.name }}</h2>
           <p class="clash-card__level clash-card__level--barbarian">
-            {{ agreements.titleAgreement }}
+            {{ agreements.nameCategory }}
           </p>
           <p class="dateCreated">
-            <i class="bi bi-calendar-date"></i> {{ agreements.dateFormatter }}
-            <i class="bi bi-geo-alt">{{ agreements.direction }}</i>
+            <i class="bi bi-calendar-date"></i> {{ agreements.dateCreation }}
+            <i class="bi bi-geo-alt">{{ agreements.address }}</i>
           </p>
           <hr />
           <p>{{ agreements.description }}</p>
           <hr />
 
-          <div
-            class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix"
-          >
+          <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
             <div class="one-third">
               <div class="stat"><i class="bi bi-emoji-smile"></i></div>
-              <div class="stat-value">{{ agreements.assesor }}</div>
+              <div class="stat-value">{{ agreements.asesor }}</div>
             </div>
 
             <div class="one-third">
@@ -50,7 +43,7 @@
 
             <div class="one-third no-border">
               <div class="stat"><i class="bi bi-envelope"></i></div>
-              <div class="stat-value">{{ agreements.email }}</div>
+              <div class="stat-value">{{ agreements.mail }}</div>
             </div>
           </div>
         </div>

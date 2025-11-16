@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable, observable} from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, observable } from 'rxjs';
 import { IFile } from '../models/file.interface';
-import {IGroupFile} from '../models/groupFile.interface'
+import { IGroupFile } from '../models/groupFile.interface';
+import { ApiResponse } from '../models/response.interfaces';
+import { RequestService } from './request.service';
+import { ApiConstants } from '../Core/Constants/apiConstants';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FileService {
+  constructor(public api: RequestService) {}
 
-   // url: string = "https://localhost/portalfomevi/api/"
-   url: string = "https://www.fomevi.com/portalfomevi/api/"
-
-  constructor(private http: HttpClient ) { }
-
-  getFiles(): Observable<IFile[]>{
-
-    let dir = this.url + "file";    
-    return this.http.get<IFile[]>(dir);
-
-  }
-
-  getGroups(): Observable<IGroupFile[]>{
-
-    let dir = this.url + "GroupFile";    
-    return this.http.get<IGroupFile[]>(dir);
-
+  GetFiles(): Observable<ApiResponse> {
+    return this.api.req({
+      method: 'get',
+      api: ApiConstants.GET_RELATIONGROUP,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
   }
 }
