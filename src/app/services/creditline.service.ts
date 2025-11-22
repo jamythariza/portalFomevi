@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable, observable} from 'rxjs'
-import { ICreditline } from '../models/creditLine.interface';
+import { Observable, observable, of } from 'rxjs';
+import { RequestService } from './request.service';
+import { ApiResponse, ApiResponseSingle } from '../models/response.interfaces';
+import { ApiConstants } from '../Core/Constants/apiConstants';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CreditlineService {
+  constructor(public api: RequestService) {}
 
-  // url: string = "https://localhost/portalfomevi/api/"
-  url: string = "https://www.fomevi.com/portalfomevi/api/"
-
-  constructor(private http: HttpClient ) { }
-
-  getAll(): Observable<ICreditline[]>{
-
-    let dir = this.url + "Creditline";    
-    return this.http.get<ICreditline[]>(dir);
-
+  getAll(): Observable<ApiResponse> {
+    return this.api.req({
+      method: 'get',
+      api: ApiConstants.GET_CREDITLINE,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
   }
 
-  getSingle(id: number): Observable<ICreditline>{
+  GetCreditLineByID(guid: string): Observable<ApiResponseSingle> {
+    if (!guid || guid.toLowerCase() === 'null') {
+      console.warn('GUID inválido, no se enviará la petición.');
+      return of({
+        success: false,
+        message: 'GUID inválido',
+      } as ApiResponseSingle);
+    }
 
-    let dir = this.url + "Creditline/"+ id;    
-    return this.http.get<ICreditline>(dir);
-
+    return this.api.req({
+      method: 'get',
+      api: `${ApiConstants.GET_CREDITLINE}/${guid}`,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
   }
 }

@@ -140,4 +140,13 @@ export class ApiConstants {
     ApiConstants.BASE_CONFIG,
     'RegulationGroup'
   );
+
+  static readonly GET_CREDITLINE = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'CreditLine'
+  );
+  static readonly GET_CREDITLINE_BYID = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'GetByIdCreditLine'
+  );
 }

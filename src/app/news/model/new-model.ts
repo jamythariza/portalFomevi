@@ -11,6 +11,6 @@ export interface NewModel {
   typeFile: string | null;
   link: string | null;
   imageBase64?: string;
-  day: string;
-  month: string;
+  dayFormat: string;
+  monthFormat: string;
 }
