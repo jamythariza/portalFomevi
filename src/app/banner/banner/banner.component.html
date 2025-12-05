@@ -4,7 +4,7 @@
       <div *ngFor="let banner of banners; let i = index" class="carousel-item" [ngClass]="{ active: i === 0 }">
         <a routerLink=""></a>
         <a (click)="goToLink(banner.urlSite)" target="_blank" [ngClass]="banner.urlSite == null ? 'not-link' : ''">
-          <img src="{{ banner.imageBase64 }}" class="d-block w-100" alt="banner fomevi" />
+          <img src="{{ banner.imageBase64 }}" class="d-block" alt="banner fomevi" />
         </a>
       </div>
     </div>
