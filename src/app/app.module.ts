@@ -66,6 +66,7 @@ import { PqrsTypePqrsOptionComponent } from './pqrs/components/pqrs-type-pqrs-op
 import { PqrsTypeCateoryComponent } from './pqrs/components/pqrs-type-cateory/pqrs-type-cateory.component';
 import { LoadFileComponent } from './pqrs/components/load-file/load-file.component';
 import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMatTimepickerModule,
+    MatRadioModule,
   ],
   providers: [
     {
