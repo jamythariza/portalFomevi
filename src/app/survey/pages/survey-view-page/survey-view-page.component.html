@@ -61,6 +61,21 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Tipo: Opción Múltiple (Radio Buttons) -->
+                                <div *ngSwitchCase="'Opción Múltiple'">
+                                    <div class="form-group pl-4">
+                                        <mat-radio-group class="example-radio-group" formControlName="response">
+                                            <mat-radio-button *ngFor="let opt of question.value.options"
+                                                [value]="opt.questionOptionGuid">
+                                                {{ opt.questionOptionText }}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                        <div class="text-danger"
+                                            *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                            Debes seleccionar una opción.
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Tipo: Lista -->
                                 <div *ngSwitchCase="'Lista Despegable'">

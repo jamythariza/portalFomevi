@@ -102,6 +102,7 @@ export class SurveyViewPageComponent implements OnInit {
       // Tipos simples: Texto Corto, Largo, Lista, Fecha, Hora
       case 'Texto Corto':
       case 'Texto Largo':
+      case 'Opción Múltiple':
       case 'Lista Despegable':
       case 'Fecha':
       case 'Hora':
@@ -281,6 +282,7 @@ export class SurveyViewPageComponent implements OnInit {
       case 'Texto Largo':
       case 'Fecha':
       case 'Hora':
+      case 'Opción Múltiple':
       case 'Lista Despegable':
       case 'Escala Lineal':
         return resp;
