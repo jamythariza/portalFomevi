@@ -7,12 +7,13 @@ import {
 import { RequestService } from 'src/app/services/request.service';
 import { environment } from 'src/environments/environment';
 import { SurveyAnswerRequest } from '../model/Survey-answer-request';
+import { ApiConstants } from 'src/app/Core/Constants/apiConstants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SurveyService {
-  baseUrl: string = 'PortalFomeviSurvey/';
+  // baseUrl: string = 'PortalFomeviSurvey/';
   constructor(public api: RequestService) {}
 
   getSurveyResponseById(guid: string): Observable<ApiResponseSingle> {
@@ -26,7 +27,7 @@ export class SurveyService {
 
     return this.api.req({
       method: 'get',
-      api: `${this.baseUrl}survey/GetSurveyResponse/${guid}`,
+      api: `${ApiConstants.GET_SURVEY_ID}/${guid}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -46,7 +47,7 @@ export class SurveyService {
 
     return this.api.req({
       method: 'get',
-      api: `${this.baseUrl}Answer/GetSurveyValidateUser/${guid}/${documentId}`,
+      api: `${ApiConstants.GET_SURVEY_VALIDATE_USER}/${guid}/${documentId}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });
@@ -55,7 +56,7 @@ export class SurveyService {
   createSurveyAnswer(role: SurveyAnswerRequest): Observable<ApiResponse> {
     return this.api.req({
       method: 'post',
-      api: `${this.baseUrl}Answer/InsertSurveyAnswer`,
+      api: `${ApiConstants.CREATE_SURVEY_ANSWER}`,
       uri: environment.apiBaseUrl,
       body: role,
       withCredentials: true,

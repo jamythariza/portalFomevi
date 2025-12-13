@@ -149,4 +149,19 @@ export class ApiConstants {
     ApiConstants.BASE_CONFIG,
     'GetByIdCreditLine'
   );
+
+  static readonly GET_SURVEY_ID = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'GetSurveyResponse'
+  );
+
+  static readonly GET_SURVEY_VALIDATE_USER = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'GetSurveyValidateUser'
+  );
+
+  static readonly CREATE_SURVEY_ANSWER = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'InsertSurveyAnswer'
+  );
 }

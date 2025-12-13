@@ -11,15 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BannerService {
-  //url: string = "https://localhost/portalfomevi/api/"
-  url: string = 'https://www.fomevi.com/portalfomevi/api/';
-
   constructor(private http: HttpClient, public api: RequestService) {}
-
-  getAll(): Observable<IBanner[]> {
-    let dir = this.url + 'banner';
-    return this.http.get<IBanner[]>(dir);
-  }
 
   getBanners(): Observable<ApiResponse> {
     return this.api.req({

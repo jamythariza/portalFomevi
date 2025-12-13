@@ -320,14 +320,6 @@ export class SurveyViewPageComponent implements OnInit {
       },
       (error) => {
         this.loaderService.hide();
-        swal.fire({
-          title: 'Error!',
-          text:
-            error.error ||
-            'Error al guardar los datos. Intente nuevamente más tarde. ',
-          icon: 'error',
-          confirmButtonText: 'Continuar',
-        });
       }
     );
   }
