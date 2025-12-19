@@ -121,6 +121,11 @@ export class ApiConstants {
     'UpdateArticles'
   );
 
+  static readonly GET_ARTICLE_CATEGORY = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'ArticleCategories'
+  );
+
   static readonly GET_USERS = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
     'Users'

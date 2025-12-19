@@ -27,7 +27,7 @@ export class ArticleService {
   GetCategoryArticle(): Observable<ApiResponse> {
     return this.api.req({
       method: 'get',
-      api: `${ApiConstants.GET_ARTICLES}`,
+      api: `${ApiConstants.GET_ARTICLE_CATEGORY}`,
       uri: environment.apiBaseUrl,
       withCredentials: true,
     });

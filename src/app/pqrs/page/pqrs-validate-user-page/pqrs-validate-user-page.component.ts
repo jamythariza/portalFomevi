@@ -22,7 +22,7 @@ import { ApiConstants } from 'src/app/Core/Constants/apiConstants';
 export class PqrsValidateUserPageComponent {
   pqrsForm!: FormGroup;
   pqrsForm2!: FormGroup;
-  correo: string = 'auxiliarmedellin@fomevi.com';
+  correo: string = 'auxiliarmedellin2@fomevi.com';
   userIsValid: boolean = false;
   pqrsUserValidateModel!: PqrsUserValidateModel;
   filter!: PqrsByDocumentFilterModel;
