@@ -103,7 +103,7 @@ export class ApiConstants {
   // ARTICLES
   static readonly GET_ARTICLESBYID = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'Article'
+    'Articles'
   );
 
   static readonly GET_ARTICLESBYDOCUMENT = ApiConstants.withBase(
@@ -113,7 +113,7 @@ export class ApiConstants {
 
   static readonly GET_ARTICLE_INSERT = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
-    'Article'
+    'InsertArticles'
   );
 
   static readonly GET_ARTICLE_UPDATE = ApiConstants.withBase(

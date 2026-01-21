@@ -52,7 +52,7 @@ export class CreateMyArticleComponent implements OnInit {
       price: [null, [Validators.required, Validators.pattern(/^[0-9]+$/)]],
       categoryGuid: ['', [Validators.required]],
       stateGuid: ['39DC7478-BA2E-4E03-9F58-BDEF0E3E0D38'],
-      stateArticle: [null, [Validators.required]],
+      stateArticle: ['', [Validators.required]],
       ubication: ['', [Validators.required]],
       image: [null],
       fullName: ['', [Validators.required]],
@@ -76,7 +76,6 @@ export class CreateMyArticleComponent implements OnInit {
   ngOnInit(): void {
     this.guid = this.route.snapshot.paramMap.get('guid') ?? null;
     this.documentoId = this.route.snapshot.paramMap.get('documentoId') ?? '';
-
     if (this.documentoId && this.documentoId !== 'null') this.getInfo();
 
     this.articleForm.valueChanges.subscribe(() => {
@@ -90,7 +89,7 @@ export class CreateMyArticleComponent implements OnInit {
     const image = this.articleForm.get('image')?.value != null;
     const title = this.articleForm.get('title')?.valid;
     const price = this.articleForm.get('price')?.value != null;
-    const stateGuid = this.articleForm.get('stateGuid')?.value;
+    // const stateGuid = this.articleForm.get('stateGuid')?.value;
     const category = this.articleForm.get('categoryGuid')?.value;
     const stateArticle = this.articleForm.get('stateArticle')?.value;
     const ubication = this.articleForm.get('ubication')?.value;
@@ -99,7 +98,7 @@ export class CreateMyArticleComponent implements OnInit {
       title &&
       image &&
       price &&
-      stateGuid &&
+      // stateGuid &&
       category &&
       stateArticle &&
       ubication
@@ -269,7 +268,7 @@ export class CreateMyArticleComponent implements OnInit {
       price: this.articleForm.value.price ?? null,
       categoryGuid: this.articleForm.value.categoryGuid ?? null,
       sellerId: null,
-      stateGuid: this.articleForm.value.stateGuid ?? null,
+      stateGuid: '39DC7478-BA2E-4E03-9F58-BDEF0E3E0D38',
       image:
         this.guid == null
           ? this.articleForm.value.image
