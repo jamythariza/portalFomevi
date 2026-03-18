@@ -36,6 +36,7 @@ export class CreateMyArticleComponent implements OnInit {
   validatedFirstStep: boolean = false;
   validatedSecondStep: boolean = false;
   validatedThirdStep: boolean = false;
+  successMessage: string = '';
 
   step = 1;
   totalSteps = 4;
@@ -290,10 +291,10 @@ export class CreateMyArticleComponent implements OnInit {
         ? this.service.updateArticle(article)
         : this.service.createArticle(article);
 
-    const successMessage =
-      this.guid && this.guid !== null && this.guid !== null
+    this.successMessage =
+      this.guid && this.guid !== null
         ? 'Actualización realizada con éxito.'
-        : 'Los datos se guardaron exitosamente';
+        : 'Confirmamos la recepción de la solicitud del clasificado. Por favor, envía la información al correo <a href="mailto:fomevi@fomevi.com"><strong>fomevi@fomevi.com</strong></a> para gestionar su aprobación.';
 
     userServiceAction.subscribe(
       (response) => {
@@ -301,7 +302,7 @@ export class CreateMyArticleComponent implements OnInit {
           swal
             .fire({
               title: 'Buen trabajo!',
-              text: successMessage,
+              html: this.successMessage,
               icon: 'success',
             })
             .then((result) => {

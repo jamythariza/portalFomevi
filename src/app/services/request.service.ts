@@ -14,31 +14,42 @@ export class RequestService {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   req(params: any = {}, file?: boolean, options?: any): Observable<any> {
-    const optionItems = {
+    const optionItems: any = {
       method: params.method,
-      headers: this.headers,
+      headers: this.headers, // ⚠ NO poner 'Content-Type' si es FormData
+      responseType: params.responseType || 'json',
+      observe: params.observe || 'body',
+      withCredentials: params.withCredentials,
     };
 
     let url = `${params.uri}${params.api}`;
 
-    if (options) {
-      optionItems.headers = options.headers;
+    // Si es file, eliminamos Content-Type
+    if (file && optionItems.headers) {
+      const { 'Content-Type': _, ...rest } = optionItems.headers;
+      optionItems.headers = rest;
     }
 
     return this.httpClient
       .request(optionItems.method, url, {
         body: params.body,
         headers: optionItems.headers,
-        observe: 'response',
         params: params.params,
+        responseType: optionItems.responseType,
+        observe: optionItems.observe,
+        withCredentials: params.withCredentials,
       })
       .pipe(
         map((res: any) => {
-          if (res.body && res.body.token) {
-            this.setToken(res.body.token);
-            this.setUsersession(res.body.user.guid);
+          if (params.responseType === 'blob') {
+            return res;
           }
-          return res.body;
+
+          if (res?.token) {
+            this.setToken(res.token);
+            this.setUsersession(res.user.guid);
+          }
+          return res;
         }),
         catchError((error: any) => {
           let message = 'Ha ocurrido un error inesperado';

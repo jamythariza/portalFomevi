@@ -67,6 +67,9 @@ import { PqrsTypeCateoryComponent } from './pqrs/components/pqrs-type-cateory/pq
 import { LoadFileComponent } from './pqrs/components/load-file/load-file.component';
 import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ReportAccountDiscriminationComponent } from './reports/pages/report-account-discrimination/report-account-discrimination.component';
+import { ReportMemebershipCertificatedComponent } from './reports/pages/report-memebership-certificated/report-memebership-certificated.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -110,6 +113,8 @@ import { MatRadioModule } from '@angular/material/radio';
     PqrsTypeCateoryComponent,
     LoadFileComponent,
     PqrsMyPqrsComponent,
+    ReportAccountDiscriminationComponent,
+    ReportMemebershipCertificatedComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,6 +138,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatNativeDateModule,
     NgxMatTimepickerModule,
     MatRadioModule,
+    MatSelectModule,
   ],
   providers: [
     {

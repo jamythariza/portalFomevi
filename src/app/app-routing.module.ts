@@ -20,6 +20,8 @@ import { ArticleViewPageComponent } from './articles/pages/article-view-page/art
 import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
 import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
 import { PqrsValidateUserPageComponent } from './pqrs/page/pqrs-validate-user-page/pqrs-validate-user-page.component';
+import { ReportAccountDiscriminationComponent } from './reports/pages/report-account-discrimination/report-account-discrimination.component';
+import { ReportMemebershipCertificatedComponent } from './reports/pages/report-memebership-certificated/report-memebership-certificated.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '*', pathMatch: 'full' },
@@ -52,6 +54,14 @@ const routes: Routes = [
   },
   { path: 'survey/:guid', component: SurveyViewPageComponent },
   { path: 'pqrs', component: PqrsValidateUserPageComponent },
+  {
+    path: 'report-account/:documentoId',
+    component: ReportAccountDiscriminationComponent,
+  },
+  {
+    path: 'report-certicate/:documentoId',
+    component: ReportMemebershipCertificatedComponent,
+  },
 ];
 
 @NgModule({

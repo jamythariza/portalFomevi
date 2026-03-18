@@ -169,4 +169,13 @@ export class ApiConstants {
     ApiConstants.BASE_CONFIG,
     'InsertSurveyAnswer'
   );
+
+  static readonly CREATE_REPORT_CERTIFCATE = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'CertificateReport'
+  );
+  static readonly CREATE_REPORT_DISCRIMINATION = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'DiscriminationAccountReport'
+  );
 }
