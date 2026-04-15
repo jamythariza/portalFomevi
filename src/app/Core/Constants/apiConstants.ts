@@ -53,6 +53,10 @@ export class ApiConstants {
   static readonly ALERT_NOTIFICATION_EXPIRED_SESSION =
     'Tu sesión ha expirado. Por favor, inicia sesión nuevamente.';
 
+  // ========== MESSAGES CREDITS ==========
+  static readonly ALERT_ERROR_QUOTA =
+    'No fue posible calcular la cuota, revisa los datos ingresados';
+
   // BANNER
   static readonly GET_BANNER = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
@@ -177,5 +181,29 @@ export class ApiConstants {
   static readonly CREATE_REPORT_DISCRIMINATION = ApiConstants.withBase(
     ApiConstants.BASE_CONFIG,
     'DiscriminationAccountReport'
+  );
+
+  static readonly CREDITSTATE_GET = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'GetState'
+  );
+  static readonly CREDITSTATE_BY_ID = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'GetByIdState'
+  );
+
+  static readonly CREDIT_GET = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'CreditsGetByDocument'
+  );
+
+  static readonly CREDIT_INSERT = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'InsertCredit'
+  );
+
+  static readonly CATEGORYFILE_GETALL = ApiConstants.withBase(
+    ApiConstants.BASE_CONFIG,
+    'CreditlineCategoryFile_GetAll'
   );
 }

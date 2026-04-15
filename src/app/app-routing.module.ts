@@ -22,6 +22,8 @@ import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-
 import { PqrsValidateUserPageComponent } from './pqrs/page/pqrs-validate-user-page/pqrs-validate-user-page.component';
 import { ReportAccountDiscriminationComponent } from './reports/pages/report-account-discrimination/report-account-discrimination.component';
 import { ReportMemebershipCertificatedComponent } from './reports/pages/report-memebership-certificated/report-memebership-certificated.component';
+import { CreditInitialComponent } from './credits/pages/credit-initial/credit-initial.component';
+import { CreditMyCreditsComponent } from './credits/pages/credit-my-credits/credit-my-credits.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '*', pathMatch: 'full' },
@@ -61,6 +63,14 @@ const routes: Routes = [
   {
     path: 'report-certicate/:documentoId',
     component: ReportMemebershipCertificatedComponent,
+  },
+  {
+    path: 'credit/:documentoId',
+    component: CreditInitialComponent,
+  },
+  {
+    path: 'my-credits/:documentoId',
+    component: CreditMyCreditsComponent,
   },
 ];
 

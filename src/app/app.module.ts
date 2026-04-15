@@ -38,7 +38,7 @@ import { ServiceComponent } from './service/service/service.component';
 import { SavingComponent } from './saving/saving/saving.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DialogOverviewComponent } from './Components/dialog-overview/dialog-overview.component';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
 import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
@@ -70,6 +70,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReportAccountDiscriminationComponent } from './reports/pages/report-account-discrimination/report-account-discrimination.component';
 import { ReportMemebershipCertificatedComponent } from './reports/pages/report-memebership-certificated/report-memebership-certificated.component';
 import { MatSelectModule } from '@angular/material/select';
+import { CreditInitialComponent } from './credits/pages/credit-initial/credit-initial.component';
+import { DirectivesComponent } from './credits/components/directives/directives.component';
+import { CommentsCreditComponent } from './credits/components/comments-credit/comments-credit.component';
+import { CreditStateComponent } from './credits/components/credit-state/credit-state.component';
+import { UploadDocumentsComponent } from './credits/components/upload-documents/upload-documents.component';
+import { CreditMyCreditsComponent } from './credits/pages/credit-my-credits/credit-my-credits.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +121,12 @@ import { MatSelectModule } from '@angular/material/select';
     PqrsMyPqrsComponent,
     ReportAccountDiscriminationComponent,
     ReportMemebershipCertificatedComponent,
+    CreditInitialComponent,
+    DirectivesComponent,
+    CommentsCreditComponent,
+    CreditStateComponent,
+    UploadDocumentsComponent,
+    CreditMyCreditsComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,6 +151,8 @@ import { MatSelectModule } from '@angular/material/select';
     NgxMatTimepickerModule,
     MatRadioModule,
     MatSelectModule,
+    MatProgressBarModule,
+    CommonModule,
   ],
   providers: [
     {

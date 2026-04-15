@@ -1,0 +1,6 @@
+<select class="form-select" [(ngModel)]="selectedValue" (ngModelChange)="onValueChange($event)">
+    <option selected disabled value="">Seleccionar...</option>
+    <option *ngFor="let estado of estadosFiltrados" [value]="estado.guid">
+        {{ estado.description }}
+    </option>
+</select>

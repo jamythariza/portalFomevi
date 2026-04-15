@@ -48,7 +48,7 @@ export class ReportAccountDiscriminationComponent implements OnInit {
     );
 
     // Opcional: valores por defecto
-    this.selectedMonth = new Date().getMonth() + 1;
+    this.selectedMonth = new Date().getMonth();
     this.selectedYear = currentYear;
     // if (this.documentoId && this.documentoId !== 'null') this.Info();
   }

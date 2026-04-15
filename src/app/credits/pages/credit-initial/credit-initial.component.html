@@ -1,0 +1,352 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Solicitud de Crédito</h2>
+                <p>A través de este formulario se recibe la solicitud de crédito, la cual estará en proceso de análisis
+                    y sujeta a revisión del respaldo de garantías. Si tienes algún tipo de inquietud, te invitamos a
+                    comunicarte al correo:</p>
+                <button class="btn btn-sm btn-success float-right">
+                    <i class="fas fa-solid fa-coins"></i> &nbsp;Cuota del crédito {{payment}}</button>
+
+                <form [formGroup]="creditForm" id="creditForm">
+                    <ul id="progressbar">
+                        <li [class.active]="step >= 1" id="account">Información del crédito</li>
+                        <li [class.active]="step >= 2" id="personal">Información Financiera</li>
+                        <li [class.active]="step >= 3" id="payment">Carga de Archivos</li>
+                        <li [class.active]="step >= 4" id="confirm">Terminado</li>
+                    </ul>
+
+                    <div class="progress">
+                        <!-- <div class="progress-bar progress-bar-striped progress-bar-animated"
+                            [style.width]="progressWidth()" role="progressbar"></div> -->
+                    </div>
+
+                    <!-- Step 1 -->
+                    <fieldset *ngIf="step === 1">
+                        <div class="form-card m-4">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Información del Crédito</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 1 - 4</h2>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class=" col-md-6">
+                                    <span class="badge badge-secondary">1 </span><label>&nbsp;Línea de crédito</label>
+                                    <select id="inputState" class="form-select" formControlName="creditline"
+                                        (change)="onSelectCreditLine($event)" [(ngModel)]="selectedCategory"
+                                        (change)="onCategoryChange()">
+
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option *ngFor="let item of datos" [value]="item.description">{{
+                                            item.description }}</option>
+                                    </select>
+                                    <p class="description"> Selecciona la línea de crédito.</p>
+                                    <div
+                                        *ngIf="creditForm.get('creditline')?.invalid && creditForm.get('creditline')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('creditline')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('creditline')?.errors?.['pattern']">Solo se permiten
+                                            números.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge badge-secondary">2 </span>&nbsp;<label>Monto a prestar</label>
+                                    <div class="input-group">
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">$</div>
+                                            </div>
+                                            <input type="text" class="form-control"
+                                                [value]="creditForm.get('monto')?.value | numberFormat"
+                                                (input)="validator($event, 'monto')" formControlName="monto">
+                                        </div>
+                                        <div *ngIf="selectedCreditLine" class="col-md-12">
+                                            <p class="description">El monto sugerido para esta línea es <strong>{{
+                                                    selectedCreditLine.rangeInitialFormatted
+                                                    }}</strong>
+                                                hasta:
+                                                <strong>{{ selectedCreditLine.rangeFinallyFormatted }}</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12"
+                                            *ngIf="creditForm.get('monto')?.invalid && creditForm.get('monto')?.touched">
+                                            <span class="text-danger"
+                                                *ngIf="creditForm.get('monto')?.errors?.['required']">El campo es
+                                                obligatorio.</span>
+                                            <span class="text-danger"
+                                                *ngIf="creditForm.get('monto')?.errors?.['pattern']">Solo se permiten
+                                                números.</span>
+                                            <span class="text-danger"
+                                                *ngIf="creditForm.get('monto')?.errors?.['min']">El monto sugerido es
+                                                inferior.</span>
+                                            <span class="text-danger"
+                                                *ngIf="creditForm.get('monto')?.errors?.['max']">El monto sugerido es
+                                                superior.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <span class="badge badge-secondary">3 </span>&nbsp;<label>Plazo</label>
+                                    <select id="inputPlazo" class="form-select" formControlName="plazo">
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option value="Q">Quincenal</option>
+                                        <option value="M">Mensual</option>
+                                    </select>
+                                    <div *ngIf="selectedCreditLine">
+                                        <p class="description">Seleccionar si tu crédito a débitar será QUINCENAL ó
+                                            MENSUAL.</p>
+                                    </div>
+                                    <div *ngIf="creditForm.get('plazo')?.invalid && creditForm.get('plazo')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('plazo')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class=" col-md-6">
+                                    <span class="badge badge-secondary">4</span>&nbsp; <label>Cuotas</label>
+                                    <input type="text" class="form-control" formControlName="cuota">
+                                    <div *ngIf="selectedCreditLine">
+                                        <p class="description">La línea no debe superar :<strong>{{
+                                                selectedCreditLine.biweeklyTerm }}
+                                                meses</strong>
+                                        </p>
+                                    </div>
+                                    <div *ngIf="creditForm.get('cuota')?.invalid && creditForm.get('cuota')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('cuota')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('cuota')?.errors?.['pattern']">Solo se permiten
+                                            números.</span>
+                                        <span class="text-danger" *ngIf="creditForm.get('cuota')?.errors?.['max']">El
+                                            plazo es
+                                            superior.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <span class="badge badge-secondary">5 </span>&nbsp;<label>Teléfono</label>
+                                    <input type="tel" class="form-control" formControlName="phone">
+                                    <p class="description"> Ingrese su teléfono, al cuál nos podemos comunicar con
+                                        usted.</p>
+                                    <div *ngIf="creditForm.get('phone')?.invalid && creditForm.get('phone')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('phone')?.errors?.['pattern']">Solo se permiten
+                                            números.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="badge badge-secondary">6 </span>&nbsp;<label>Email</label>
+                                    <input type="email" class="form-control" formControlName="email">
+                                    <p class="description">Ingrese su correo electrónico personal, al cuál se le
+                                        notificará el estado de su
+                                        solicitud. </p>
+                                    <div *ngIf="creditForm.get('email')?.invalid && creditForm.get('email')?.touched">
+                                        <span class="text-danger" *ngIf="creditForm.get('email')?.errors?.['email']">El
+                                            email debe ser
+                                            valido..</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="button" class="next action-button" value="Siguiente" (click)="nextStep()"
+                            [disabled]=" !validatedFirstStep" />
+                    </fieldset>
+
+                    <!-- Step 2 -->
+                    <fieldset *ngIf="step === 2">
+                        <div class="form-card m-4">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Información Financiera</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 2 - 4</h2>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <div class="col-md-6">
+                                    <span class="badge badge-secondary">7 </span>&nbsp;<label>Activo</label>
+                                    <input type="tel" class="form-control" formControlName="activo"
+                                        [value]="creditForm.get('activo')?.value | numberFormat"
+                                        (input)="validator($event, 'activo')">
+                                    <p class="description"> Ingrese sus activos.</p>
+                                    <div *ngIf="creditForm.get('activo')?.invalid && creditForm.get('activo')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('activo')?.errors?.['pattern']">Solo se permiten
+                                            números.</span>
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('activo')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <span class="badge badge-secondary">8 </span>&nbsp;<label>Pasivo</label>
+                                    <input type="email" class="form-control" formControlName="pasivo"
+                                        [value]="creditForm.get('pasivo')?.value | numberFormat"
+                                        (input)="validator($event, 'pasivo')">
+                                    <p class="description">Ingrese su pasivo </p>
+                                    <div *ngIf="creditForm.get('pasivo')?.invalid && creditForm.get('pasivo')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('pasivo')?.errors?.['pattern']">Solo se permiten
+                                            números.</span>
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('pasivo')?.errors?.['required']">El campo es
+                                            obligatorio.</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label>Total Patrimonio</label>
+                                    <input type="patrimonio" class="form-control" id="patrimonio" readonly
+                                        [ngStyle]="{ color: isPatrimonioNegativo ? 'red' : 'black' }"
+                                        formControlName="patrimonio" [value]="creditForm.get('patrimonio')?.value ">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" value="true"
+                                            formControlName="familiesCheck" (click)="showFamilies()">
+                                        <label class="form-check-label" for="familiesCheck">
+                                            <label> ¿Tiene familiares afiliados a FOMEVI ?</label>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4" *ngIf="creditForm.get('familiesCheck')?.value">
+                                    <label>Parentesco</label>
+                                    <select id="parents" class="form-select" formControlName="parents"
+                                        placeholder="Seleccionar...">
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option value="Conyugue">Cónyugue</option>
+                                        <option value="Padre">Padre/Madre</option>
+                                        <option value="Hermano">Herman(a)</option>
+                                        <option value="Hijo">Hijo</option>
+                                        <option value="Abuelo">Abuelo(a)</option>
+                                        <option value="Nieto">Nieto(a)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4" *ngIf="creditForm.get('familiesCheck')?.value">
+                                    <label>Documento de Identidad</label>
+                                    <input type="text" class="form-control" formControlName="documentoFamiliar">
+                                    <div
+                                        *ngIf="creditForm.get('documentoFamiliar')?.invalid && creditForm.get('documentoFamiliar')?.touched">
+                                        <span class="text-danger"
+                                            *ngIf="creditForm.get('documentoFamiliar')?.errors?.['pattern']">Solo se
+                                            permiten números.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label>Comentarios</label>
+                                    <textarea class="form-control" formControlName="comments"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="button" class="next action-button" value="Siguiente" (click)="nextStep()"
+                            [disabled]="!validatedSecondStep" />
+                        <input type="button" class="previous action-button-previous" value="Anterior"
+                            (click)="prevStep()" />
+                    </fieldset>
+
+                    <!-- Step 3 -->
+                    <fieldset *ngIf="step === 3">
+                        <div class="form-card m-4">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Carga de Archivos</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 3 - 4</h2>
+                                </div>
+                                <div class=" col-md-12">
+                                    <app-upload-documents [selectedCategory]="selectedCategory"
+                                        (requiredDocumentsEmit)="onRequiredDocumentsReceived($event)"
+                                        (documentsUploaded)="onDocumentsUploaded($event)"></app-upload-documents>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="true"
+                                                (change)="onAuthorizedData()" formControlName="invalidCheck">
+                                            <label class="form-check-label" for="invalidCheck">
+                                                <span class="badge badge-secondary">9 </span>&nbsp;<label> Aceptó
+                                                    términos y condiciones</label>
+                                            </label>
+                                        </div>
+                                        <div
+                                            *ngIf="creditForm.get('invalidCheck')?.invalid && creditForm.get('invalidCheck')?.touched">
+                                            <span class="text-danger"
+                                                *ngIf="creditForm.get('invalidCheck')?.errors?.['required']">El campo es
+                                                obligatorio.</span>
+                                        </div>
+                                        <p>Autorizo a FOMEVI , para que conserve la información aquí suministrada, me
+                                            contacte con el fin de
+                                            ofrecerme sus servicios; y para que procese mi información ante las
+                                            entidades de consulta de bases de
+                                            datos u Operadores de Información y Riesgo. El resultado del análisis del
+                                            crédito, le será informado a
+                                            través de los medios de contacto que ha suministrado .</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="next action-button"
+                            [disabled]="creditForm.invalid || !validatedThirdStep"
+                            (click)="saveCredit()">Guardar</button>
+                        <input type="button" class="previous action-button-previous" value="Anterior"
+                            (click)="prevStep()" />
+                    </fieldset>
+
+                    <!-- Step 4 -->
+                    <fieldset *ngIf="step === 4">
+                        <div class="form-card m-4">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title"></h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps"> 4 - 4</h2>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <h2 class="purple-text text-center"><strong>Correcto !</strong></h2>
+                            <br />
+                            <div class="row justify-content-center">
+                                <div class="col-3 text-center">
+                                    <a [routerLink]="['/articles/my-articles', documentoId]"
+                                        class="next action-button text-center" style="width: 140px;">
+                                        Ir a mis artículos
+                                    </a>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">El artículo se ha publicado correctamente</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

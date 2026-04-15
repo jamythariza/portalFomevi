@@ -1,0 +1,18 @@
+<section class="example-section mt-3 p-2 border rounded">
+    <!-- Lista de usuarios de la directiva -->
+    <span class="example-list-section">
+        <ul class="list-unstyled">
+            <ng-container *ngFor="let directive of directives; let i = index">
+                <li>
+
+                    <mat-checkbox [checked]="!!directive.isAssigned"
+                        (change)="updateDirectiveStatus(directive, $event.checked)">
+                        {{ directive.nameComplete }} <span *ngIf="directive.stateDescriptionApproval" class="badge-mat"
+                            [ngClass]="getBadgeClass(directive.stateDescriptionApproval)">{{
+                            directive.stateDescriptionApproval }}</span>
+                    </mat-checkbox>
+                </li>
+            </ng-container>
+        </ul>
+    </span>
+</section>

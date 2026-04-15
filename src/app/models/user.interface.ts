@@ -37,3 +37,13 @@ export class UserModel {
   userTypeGuid?: string | null;
   userTypeDescriptionManagement!: string;
 }
+
+export interface AsociadoInfo {
+  cedulaSocio?: string | null;
+  nombreIntegrado?: string | null;
+  email?: string | null;
+  nombreEmpresa?: string | null;
+  nombreCompleto?: string | null;
+  fechaIngreso?: Date | null;
+  celular?: string | null;
+}

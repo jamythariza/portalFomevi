@@ -36,4 +36,13 @@ export class CreditlineService {
       withCredentials: true,
     });
   }
+
+  GetCategoryFileAll(): Observable<ApiResponse> {
+    return this.api.req({
+      method: 'get',
+      api: ApiConstants.CATEGORYFILE_GETALL,
+      uri: environment.apiBaseUrl,
+      withCredentials: true,
+    });
+  }
 }
