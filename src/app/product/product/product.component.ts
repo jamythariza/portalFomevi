@@ -37,25 +37,30 @@ export class ProductPageComponent implements OnInit {
   ngOnInit(): void {
     this.get();
   }
-  constructor(private service: CreditlineService, private router: Router) {}
+  constructor(
+    private service: CreditlineService,
+    private router: Router,
+  ) {}
 
   get() {
     let lista: CreditLineExternalDto[] = [];
+
     this.service.getAll().subscribe(
       (response) => {
         if (response.success) {
           lista = response.content;
 
-          this.slides.forEach(function (value, key) {
-            lista[key].image = value.img;
-          });
+          this.credits = response.content.map((item, index) => ({
+            ...item,
+            image: this.slides[index]?.img ?? '',
+          }));
 
-          this.credits = lista;
+          // this.credits = lista;
         }
       },
       (error) => {
         console.error('Error fetching banner data:', error);
-      }
+      },
     );
   }
 

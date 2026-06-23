@@ -25,5 +25,5 @@ export interface CreditLineExternalDto {
   profileManagementId?: number | null;
   descriptionProfileManagement?: string | null;
   guidProfileManagement?: string | null;
-  image: string;
+  image?: string | null;
 }
