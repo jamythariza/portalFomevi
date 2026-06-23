@@ -139,7 +139,7 @@ export class CreditInitialComponent implements OnInit {
     private laoderService: LoaderService,
     private loanService: LoanCalculatorService,
     private route: ActivatedRoute,
-    private externalService: ExternalService
+    private externalService: ExternalService,
   ) {
     this.creditForm = this.fb.group({
       creditline: ['', Validators.required],
@@ -223,7 +223,7 @@ export class CreditInitialComponent implements OnInit {
   onSelectCreditLine(event: any) {
     const selectedCategoria = event.target.value;
     this.selectedCreditLine = this.datos.find(
-      (item) => item.description === selectedCategoria
+      (item) => item.description === selectedCategoria,
     );
 
     const minMonto = this.selectedCreditLine?.rangeInitial;
@@ -356,7 +356,7 @@ export class CreditInitialComponent implements OnInit {
       plazo,
       'vencida',
       prima1,
-      prima2
+      prima2,
     );
 
     // 🔹 Resultado
@@ -418,19 +418,19 @@ export class CreditInitialComponent implements OnInit {
           name: name,
           type: doc.file?.type || 'application/pdf',
           content: (await this.FileSelectedDoc(doc.file)) || null,
-        }))
+        })),
       )),
       connectedGroupRequestDto: this.dataGroupParents,
       financialDataRequestDto: {
         creditId: null,
         assets: Number(
-          (this.creditForm.get('activo')?.value || '0').replace(/\./g, '')
+          (this.creditForm.get('activo')?.value || '0').replace(/\./g, ''),
         ),
         liabilities: Number(
-          (this.creditForm.get('pasivo')?.value || '0').replace(/\./g, '')
+          (this.creditForm.get('pasivo')?.value || '0').replace(/\./g, ''),
         ),
         equity: Number(
-          (this.creditForm.get('patrimonio')?.value || '0').replace(/\./g, '')
+          (this.creditForm.get('patrimonio')?.value || '0').replace(/\./g, ''),
         ),
       },
     };
@@ -469,7 +469,7 @@ export class CreditInitialComponent implements OnInit {
           text: ApiConstants.ALERT_ERROR_SAVE_DATA,
         });
         this.laoderService.hide();
-      }
+      },
     );
   }
 
@@ -503,7 +503,7 @@ export class CreditInitialComponent implements OnInit {
             title: 'Oops...',
             text: ApiConstants.ALERT_ERROR_GET_USEREXIST,
           });
-        }
+        },
       );
 
     this.laoderService.hide();
