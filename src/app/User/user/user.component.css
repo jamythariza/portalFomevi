@@ -83,3 +83,69 @@
       border-bottom: 1px solid #ddd;
       padding: 8px;
   }
+
+  /* Estilos para la tarjeta de horarios */
+  .schedule-card {
+      background: #f9f9f9;
+      border-left: 4px solid #404f94;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: box-shadow 0.3s ease;
+  }
+
+  .schedule-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .schedule-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e0e0e0;
+  }
+
+  .schedule-header i {
+      font-size: 24px;
+      color: #404f94;
+  }
+
+  .schedule-header h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+  }
+
+  .schedule-content {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: space-around;
+  }
+
+  .schedule-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+      min-width: 150px;
+  }
+
+  .schedule-day {
+      font-weight: 600;
+      color: #333;
+      font-size: 13px;
+      text-align: center;
+  }
+
+  .schedule-time {
+      color: #666;
+      font-size: 13px;
+      text-align: center;
+  }
