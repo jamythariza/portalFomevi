@@ -1,0 +1,10 @@
+<ul class="timeline">
+    <li *ngFor="let comment of commentsLst" class="timeline-event">
+        <label class="timeline-event-icon"></label>
+        <div class="timeline-event-copy">
+            <p class="timeline-event-thumbnail">{{ comment.dateCreate }}</p>
+            <h4>{{ comment.nameComplete }}</h4>
+            <p class="timeline-paragraph">{{ comment.description }}</p>
+        </div>
+    </li>
+</ul>

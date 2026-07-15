@@ -12,13 +12,11 @@
     <div class="row">
       <div *ngFor="let line of credits" class="col-md-3 card-product">
         <div class="card">
-          <a (click)="onDetail(line.id)" class="mb-4">
+          <a (click)="onDetail(line.guid ?? '')" class="mb-4">
             <img [src]="line.image" />
-            <p class="title-lines">{{ line.creditLines }}</p>
+            <p class="title-lines">{{ line.description }}</p>
             <div class="text-center">
-              <a (click)="onDetail(line.id)" class="btn btn-lg button from-left"
-                >Conoce más</a
-              >
+              <a (click)="onDetail(line.guid ?? '')" class="btn btn-lg button from-left">Conoce más</a>
             </div>
           </a>
         </div>

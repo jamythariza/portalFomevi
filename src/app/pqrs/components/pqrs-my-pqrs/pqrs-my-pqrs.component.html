@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered" *ngIf="data.length > 0">
+    <thead class="table-dark">
+        <tr>
+            <th>Radicado</th>
+            <th>Trámite</th>
+            <th>Tipo de Trámite</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pqrs of data">
+            <td>{{ pqrs.code }}</td>
+            <td>{{ pqrs.pqrsType }}</td>
+            <td>{{ pqrs.pqrsTypeCategory }}</td>
+            <td>{{ pqrs.date | date:'yyyy/MM/dd' }}</td>
+            <td>{{ pqrs.pqrsState }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,233 @@
+<div *ngIf="canRespond == null ">
+    <app-validate-user (submitCompleted)="onSubmitCompleted($event)"></app-validate-user>
+</div>
+
+<div id="speed-test" class="container" *ngIf="!canRespond && canRespond != null">
+    <div class="speed-dashboard">
+        <div class="speed-test-container">
+            <div class="py-5 w">
+                <h1>{{survey?.title}} <p class="fst-italic description-survey text-justify">
+                        <small>{{survey?.descriptionSurvey}}</small>
+                    </p>
+                </h1>
+                <div class="formm text-left">
+                    <form [formGroup]="surveyQuestionResponseForm" *ngIf="survey" class="p-md-3"
+                        (ngSubmit)="onSubmit()">
+                        <!-- Recorremos los grupos -->
+                        <div formArrayName="groups" *ngFor="let group of groups.controls; let gIndex = index"
+                            class="mb-5">
+                            <div [formGroupName]="gIndex">
+                                <h2 class="mb-3">
+                                    {{ group.value.titleGroup }}
+                                    <p class="fst-italic description-survey text-justify">
+                                        <small>{{group.value.descriptionGroup}}</small>
+                                    </p>
+                                </h2>
+
+                                <!-- Recorremos las preguntas de cada grupo -->
+                                <div formArrayName="questions"
+                                    *ngFor="let question of getQuestions(gIndex).controls; let qIndex = index"
+                                    class="mb-4 ps-3 border-start ">
+                                    <div [formGroupName]="qIndex">
+                                        <span class="text-pr">{{ question.value.order }}. <i
+                                                class="bi bi-arrow-right arrow-small text-primary pr-2"></i>
+                                            {{ question.value.titleQuestion }}
+                                            <span *ngIf="question.value.isMandatory" class="text-danger">*</span>
+                                        </span>
+                                        <p class="text-muted fst-italic text-justify"
+                                            style="padding-left: 38px !important;">
+                                            {{question.value.descriptionQuestion }} </p>
+
+                                        <!-- Ejemplo de tipos de pregunta -->
+                                        <ng-container [ngSwitch]="question.value.questionType.descriptionQuestionType"
+                                            class="pl-5m ml-4 ">
+                                            <div *ngSwitchCase="'Texto Corto'">
+                                                <div class="form-group pl-4 ">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Escribe tu respuesta..."
+                                                        formControlName="response" />
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        El
+                                                        campo es
+                                                        obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tipo: Texto Largo -->
+                                            <div *ngSwitchCase="'Texto Largo'">
+                                                <div class="pl-4">
+                                                    <textarea class="form-control" rows="5"
+                                                        placeholder="Escribe tu respuesta aquí..."
+                                                        formControlName="response"></textarea>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        El
+                                                        campo es
+                                                        obligatorio.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tipo: Opción Múltiple (Radio Buttons) -->
+                                            <div *ngSwitchCase="'Opción Múltiple'">
+                                                <div class="form-group pl-4">
+                                                    <mat-radio-group formControlName="response">
+                                                        <mat-radio-button class="example-radio-group"
+                                                            *ngFor="let opt of question.value.options"
+                                                            [value]="opt.questionOptionGuid">
+                                                            {{ opt.questionOptionText }}
+                                                        </mat-radio-button>
+                                                    </mat-radio-group>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar una opción.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tipo: Lista -->
+                                            <div *ngSwitchCase="'Lista Despegable'">
+                                                <div class="pl-4">
+                                                    <select class="form-select" formControlName="response">
+                                                        <option value="" disabled selected>Selecciona una opción
+                                                        </option>
+                                                        <option *ngFor="let opt of question.value.options"
+                                                            [value]="opt.questionOptionGuid">
+                                                            {{ opt.questionOptionText }}
+                                                        </option>
+                                                    </select>
+
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar una opción.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Tipo: Casillas de verificación -->
+                                            <div *ngSwitchCase="'Casillas de verificación'">
+                                                <div class="form-group pl-4" formArrayName="response">
+                                                    <ul class="list-unstyled">
+                                                        <ng-container
+                                                            *ngFor="let opt of question.value.options; let i = index">
+                                                            <li>
+                                                                <mat-checkbox [formControlName]="i">
+                                                                    {{ opt.questionOptionText }}
+                                                                </mat-checkbox>
+                                                            </li>
+                                                        </ng-container>
+                                                    </ul>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar al menos una opción.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tipo: Escala (por ejemplo, de 1 a 10) -->
+                                            <div *ngSwitchCase="'Escala Lineal'">
+                                                <div class="form-group pl-4">
+                                                    <div class="d-flex gap-2 dots">
+                                                        <div *ngFor="let scale of question.value.optionScales">
+                                                            <div class="scale-container">
+                                                                <span class="dot-span"
+                                                                    *ngFor="let i of [].constructor(scale.optionEnd - scale.optionStart + 1); let idx = index">
+
+                                                                    <!-- name y formControlName iguales -->
+                                                                    <input type="radio" class="dot"
+                                                                        [value]="scale.optionStart + idx"
+                                                                        formControlName="response" />
+
+                                                                    <label>{{ scale.optionStart + idx }}</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar al menos una opción.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="'Fecha'">
+                                                <div class="form-group pl-4">
+                                                    <mat-form-field appearance="outline" class="small-field">
+                                                        <mat-label>Seleccionar Fecha</mat-label>
+                                                        <input matInput [matDatepicker]="dateFinally"
+                                                            formControlName="response">
+                                                        <mat-datepicker-toggle matIconSuffix
+                                                            [for]="dateFinally"></mat-datepicker-toggle>
+                                                        <mat-datepicker #dateFinally></mat-datepicker>
+                                                    </mat-form-field>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar la fecha.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="'Hora'">
+                                                <div class="form-group pl-4">
+                                                    <mat-form-field>
+                                                        <mat-label>Seleccione la hora</mat-label>
+                                                        <input matInput [ngxMatTimepicker]="picker"
+                                                            formControlName="response" readonly>
+                                                        <ngx-mat-timepicker-toggle matSuffix
+                                                            [for]="picker"></ngx-mat-timepicker-toggle>
+                                                        <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+                                                    </mat-form-field>
+                                                    <div class="text-danger"
+                                                        *ngIf="question.get('response')?.invalid && question.get('response')?.touched">
+                                                        Debes seleccionar la hora.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngSwitchCase="'Cuadrícula de Opción Multiple'"
+                                                [formGroup]="getResponseFormGroup(question)">
+                                                <div class="form-group pl-4">
+                                                    <table class="table table-bordered text-center align-middle">
+                                                        <thead class="table-light">
+                                                            <tr>
+                                                                <th>Fila</th>
+                                                                <th
+                                                                    *ngFor="let col of getMatrixColumns(question.value.optionMatrix)">
+                                                                    {{ col }}
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let row of getMatrixRows(question.value.optionMatrix)">
+                                                                <td>{{ row }}</td>
+                                                                <td
+                                                                    *ngFor="let col of getMatrixColumns(question.value.optionMatrix)">
+                                                                    <input type="radio" [formControlName]="row"
+                                                                        [value]="col" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="text-danger mt-2"
+                                                        *ngIf="getResponseFormGroup(question).invalid && getResponseFormGroup(question).touched">
+                                                        Debes seleccionar una opción por fila.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Tipo desconocido -->
+                                            <div *ngSwitchDefault>
+                                                <em class="text-secondary">Tipo de pregunta no soportado</em>
+                                            </div>
+
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg pulse"
+                            [disabled]="surveyQuestionResponseForm.invalid">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

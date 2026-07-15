@@ -4,3 +4,107 @@ body{
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --border-color: #e0e0e0;
+  --header-bg: #f8f9fa;
+  --hover-bg: #f1f3f5;
+  --text-main: #333;
+}
+.table-container {
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+#nestedTable th,
+#nestedTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#nestedTable th {
+  background-color: var(--header-bg);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* Hierarchy Indentation Classes */
+#nestedTable .depth-0 {
+  padding-left: 15px;
+}
+#nestedTable .depth-1 {
+  padding-left: 40px;
+}
+#nestedTable .depth-2 {
+  padding-left: 65px;
+}
+#nestedTable .depth-3 {
+  padding-left: 90px;
+}
+
+/* Row States */
+#nestedTable tr.parent-row {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#nestedTable tr.parent-row:hover {
+  background-color: var(--hover-bg);
+}
+
+#nestedTable .hidden {
+  display: none;
+}
+
+/* Toggle Icon Animation */
+.toggle-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  text-align: center;
+  line-height: 16px;
+  transition: transform 0.2s ease;
+  font-size: 10px;
+  color: #666;
+}
+
+#nestedTable.collapsed {
+  transform: rotate(-90deg);
+}
+
+#nestedTable.leaf-spacer {
+  display: inline-block;
+  width: 24px;
+}
+
+#nestedTable.badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#nestedTable.status-done {
+  background: #d4edda;
+  color: #155724;
+}
+#nestedTable.status-progress {
+  background: #fff3cd;
+  color: #856404;
+}
+ #nestedTable.status-hold {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+

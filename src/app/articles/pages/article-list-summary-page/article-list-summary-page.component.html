@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<app-menu></app-menu>
+<div class="container py-4">
+    <div class="p-5 bg-body-tertiary rounded-3">
+        <div class="row">
+            <div class="form-group col-7">
+                <div class="col-auto">
+                    <label for="estado">Buscador</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" [(ngModel)]="search" (input)="filterArticles()"
+                            placeholder="Buscar..." />
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-3">
+                <label for="estado">Categoría</label>
+                <app-article-category (valueChange)="onCategoryChange($event)"
+                    [selectedValue]="selectedCategory"></app-article-category>
+            </div>
+            <div class="form-group col-2">
+                <a class="btn btn-primary btn-sm" style="margin-top: 20px !important;" (click)="resetFilter()"><i
+                        class="fas fa-view fa-sm text-white-50"></i>
+                    Limpiar filtros</a>
+            </div>
+
+            <div class="form-group col-12">
+                <div *ngIf="filteredData.length > 0; else noResults" class="text-muted mb-2">
+                    <strong>{{ filteredData.length }}</strong> artículo{{ filteredData.length > 1 ? 's' : '' }}
+                    encontrado{{
+                    filteredData.length > 1
+                    ? 's' : '' }}
+                </div>
+
+                <ng-template #noResults>
+                    <div class="text-muted mb-2">No se encontraron resultados.</div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="p-5 card-section">
+        <div class="inner">
+            <div class="container">
+                <div class="row">
+                    <!-- Iteramos sobre los artículos -->
+                    <div class="col-sm-4" *ngFor="let article of filteredData; let i = index">
+                        <div class="card mb-3 shadow-sm card-overlay" [ngStyle]="{
+                            'background-image': article.imageBase64 ? 'url(' + article.imageBase64 + ')' : 'none',
+                            'background-size': 'cover',
+                            'background-position': 'center',
+                            'background-repeat': 'no-repeat'
+                          }">
+                            <div class="card-body text-center">
+
+                                <!-- Título -->
+                                <h2 class="card-title h2" style="
+                            min-height: 60px;
+                        ">{{ article.title }}</h2>
+                                <!-- Precio -->
+                                <a [routerLink]="['/article-view', article.guid]">
+                                    <p class="btn ml-2  mb-1 btn-price">
+                                        {{ article.price | currency:'COP ':'symbol':'1.0-0' }}
+                                    </p>
+                                </a>
+                            </div>
+
+                            <!-- Panel dinámico -->
+                            <div class="panel-group" [attr.id]="'accordion' + i" role="tablist"
+                                aria-multiselectable="false">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" [attr.id]="'heading' + i">
+                                        <a class="panel-button" data-bs-toggle="collapse"
+                                            [attr.data-bs-parent]="'#accordion' + i" [attr.href]="'#collapse' + i"
+                                            aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+                                            <span class="plus-minus"></span>
+                                        </a>
+
+                                    </div>
+
+                                    <div [attr.id]="'collapse' + i" class="panel-collapse collapse" role="tabpanel"
+                                        [attr.aria-labelledby]="'heading' + i">
+                                        <div class="panel-body p-3">
+
+                                            <p><i class="fa fa-pointer text-danger"
+                                                    style=" font-size: 1.2em;"></i><strong>Ubicación:</strong> {{
+                                                article.ubication }}</p>
+                                            <p><strong>Estado:</strong> {{ article.stateArticle }}</p>
+                                            <p><strong>Categoría:</strong> {{ article.categoryName }}</p>
+                                            <p class="text-muted mb-1">Fecha creación: {{ article.dateCreated | date }}
+                                            </p>
+
+                                            <div class="media-body text-left">
+                                                <a class="btn btn-primary my-2"
+                                                    [routerLink]="['/article-view', article.guid]">
+
+                                                    Ver más...
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /panel -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

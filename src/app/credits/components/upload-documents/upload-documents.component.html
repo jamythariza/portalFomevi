@@ -1,0 +1,9 @@
+<div class="upload-container" *ngIf="selectedCategory">
+    <h5 class="card-title">Documentos requeridos para &nbsp;<strong>{{ selectedCategory }}</strong> :</h5>
+    <div class="upload-item" *ngFor="let doc of requiredDocuments[selectedCategory]">
+        <label>{{ doc.name }} <span *ngIf="doc.required" class="text-danger">* </span></label>
+        <input type="file" accept=".pdf" (change)="onFileSelected($event, doc.name)" [required]="doc.required">
+        <span class="file-name" *ngIf="uploadedFiles[doc.name]?.file"><i class="fas  fa-check-circle"></i>
+            Cargado.</span>
+    </div>
+</div>

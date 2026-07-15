@@ -14,21 +14,13 @@
     </div>
     <div>
       <div class="row">
-        <div
-          class="col-xs-6 col-sm-6 col-md-6 col-lg-3 p-2"
-          *ngFor="let group of groups"
-        >
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 p-2" *ngFor="let group of groups">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">{{ group.nameGroup }}</h3>
-              <div class="item-card" *ngFor="let file of group.files">
+              <h3 class="card-title">{{ group.regulationGroupName }}</h3>
+              <div class="item-card" *ngFor="let file of group.relationFile">
                 <i class="bi bi-file-pdf"></i>&nbsp;
-                <a
-                  href="https://www.fomevi.com/fomevi/comun/descarga.aspx?IdArchivo={{
-                    file.id
-                  }}"
-                  >{{ file.nameFile2 }}</a
-                >
+                <a (click)="download(file)">{{ file.regulationFieldName }}</a>
               </div>
             </div>
           </div>

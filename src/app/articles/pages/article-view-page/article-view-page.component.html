@@ -1,0 +1,103 @@
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+
+<div class="container py-4">
+    <div class="row p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-1 text-right">
+                    <a class="btn btn-outline-primary my-2" [routerLink]="['/articles-summary']"><i
+                            class="bi bi-arrow-left-square"></i>
+                    </a>
+                </div>
+                <div class="col-11 mt-2 mb-1">
+                    <h2 class="text-uppercase">{{article?.title}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <app-article-image *ngIf="articleImages && articleImages.length > 0" [images]="articleImages"
+                [guid]="guid"></app-article-image>
+            <div class="my-4">
+                <h3><i class="icon-speech warning font-large icon-desc"></i> Descripción</h3>
+                <div [innerHTML]="safeDescription"></div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-4 col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body ">
+                        <div class=" media d-flex mb-2 row">
+                            <div class="align-self-center col-2">
+                                <i class="icon-user success font-large"></i>
+                            </div>
+                            <div class="media-body text-right col-10">
+                                <span class="text-uppercase text-strong ">{{article?.seller?.fullName}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 media d-flex">
+                            <div class="media-body text-right col-12">
+                                <span>{{article?.seller?.email}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 media d-flex">
+                            <div class="media-body text-right col-12">
+                                <span>{{article?.seller?.phone}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex mb-2 row">
+                            <div class="align-self-center col-2">
+                                <i class="icon-wallet warning font-large float-right"></i>
+                            </div>
+                            <div class="media-body text-right col-10">
+                                <span><strong> {{article?.price | currency:'COP ':'symbol':'1.0-0'}}</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex row">
+                            <div class="align-self-center col-2">
+                                <i class="icon-pointer danger font-large float-right"></i>
+                            </div>
+                            <div class="media-body text-right col-10">
+                                <span>{{article?.ubication}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="media d-flex row">
+                            <div class="align-self-center col-2">
+                                <i class="icon-direction primary font-large float-right"></i>
+                            </div>
+                            <div class="media-body text-right col-10">
+                                <span>{{article?.categoryName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-4 mb-1">
+                <h3> Consejos de seguridad para compradores</h3>
+                <ul>
+                    <li>Desconfía de propuestas poco realistas</li>
+                    <li>Revisa el artículo antes de comprarlo</li>
+                    <li>Procura realizar el pago contra entrega</li>
+                </ul>
+            </div>
+
+        </div>

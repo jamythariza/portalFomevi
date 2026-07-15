@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "795445b1-f6a8-4be1-8688-4346c52852ee"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -46,8 +49,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -112,6 +115,5 @@
         }
       }
     }
-  },
-  "defaultProject": "PortalFomevi"
+  }
 }

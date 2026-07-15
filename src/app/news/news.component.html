@@ -6,47 +6,34 @@
         <app-button-back></app-button-back>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-8">
-        <h2 class="text-center title-page-intrernal">{{ titlePage }}</h2>
+        <!-- <h2 class="text-center title-page-intrernal">{{ news.name }}</h2> -->
       </div>
     </div>
     <div class="wrapper-spinner">
       <app-spinner [ngClass]="loader ? 'loading-page' : 'hidden'"></app-spinner>
     </div>
-    <div *ngIf="newsList">
+    <div *ngIf="news">
       <div class="row">
-        <div
-          class="col-xs-6 col-sm-6 col-md-4 col-lg-4 p-2"
-          *ngFor="
-            let news of newsList
-              | paginate : { itemsPerPage: 9, currentPage: page }
-          "
-        >
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 p-2" *ngFor="
+            let new of news
+      | paginate: { itemsPerPage: 9, currentPage: page };
+    let i = index
+          ">
           <div class="card">
-            <img
-              src="{{ news.image }}"
-              class="img-fluid img-post"
-              alt="novedades fomevi"
-            />
+            <img src="{{ new.imageBase64 }}" class="img-fluid img-post" alt="novedades fomevi" />
             <div class="card-body">
-              <h3>{{ news.title }}</h3>
-              <p><i class="bi bi-calendar-date"></i> {{ news.dateNewsList }}</p>
-              <p class="card-text">{{ news.descriptionInitial }}</p>
-              <a
-                routerLink="/detail/{{ news.id }}"
-                class="btn button from-left"
-                href="#"
-                ><span>Más Información</span></a
-              >
+              <h3>{{ new.name }}</h3>
+              <!-- <p><i class="bi bi-calendar-date"></i> {{ new.dateNewsList }}</p>  -->
+              <div [innerHTML]="safeDescription"></div>
+              <a routerLink="/detail/{{ new.guid }}" class="btn button from-left" href="#"><span>Más
+                  Información</span></a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <pagination-controls
-      (pageChange)="page = $event"
-      previousLabel="Anterior"
-      nextLabel="Siguiente"
-    ></pagination-controls>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+      nextLabel="Siguiente"></pagination-controls>
   </div>
 </section>
 <app-footer></app-footer>

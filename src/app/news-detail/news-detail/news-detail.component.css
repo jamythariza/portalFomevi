@@ -17,8 +17,10 @@ hr{
 a{
     text-decoration: none;
     color: #414d95;
+    cursor: pointer;
 }
 .text-justify{
     text-align: justify;
 }
+
 

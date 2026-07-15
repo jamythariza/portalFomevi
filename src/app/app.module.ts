@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import {
+  CommonModule,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 
-import { AppRoutingModule,routingComponents } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NgsRevealModule} from 'ng-scrollreveal';
-import { CarouselModule} from 'ngx-owl-carousel-o';
+import { NgsRevealModule } from 'ng-scrollreveal';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LatestNewsComponent } from './Components/latest-news/latest-news.component';
 
 import { NewsComponent } from './news/news.component';
@@ -28,14 +32,50 @@ import { DetailCreditlineComponent } from './detail-creditline/detail-creditline
 import { AboutusComponent } from './aboutUs/aboutus/aboutus.component';
 import { AttentionComponent } from './attentionPoints/attention/attention.component';
 import { FilesComponent } from './Files/files/files.component';
-import {ProductPageComponent} from './product/product/product.component';
+import { ProductPageComponent } from './product/product/product.component';
 import { SpinnerComponent } from './Components/spinner/spinner.component';
 import { ServiceComponent } from './service/service/service.component';
-import { SavingComponent } from './saving/saving/saving.component'
-import {MatTabsModule} from '@angular/material/tabs';
+import { SavingComponent } from './saving/saving/saving.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { DialogOverviewComponent } from './Components/dialog-overview/dialog-overview.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ArticleViewPageComponent } from './articles/pages/article-view-page/article-view-page.component';
+import { ArticleListSummaryPageComponent } from './articles/pages/article-list-summary-page/article-list-summary-page.component';
+import { ArticleCategoryComponent } from './Components/Util/article-category/article-category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticleImageComponent } from './articles/components/article-image/article-image.component';
+import { TokenInterceptor } from './Core/Interceptors/tokenInterceptor';
+import { ListMyArticlesComponent } from './articles/pages/list-my-articles/list-my-articles.component';
+import { CreateMyArticleComponent } from './articles/components/create-my-article/create-my-article.component';
+import { NumberFormatPipe } from './pipes/number-format.pipe';
+import { LoaderComponent } from './Components/loader/loader.component';
+import { SurveyViewPageComponent } from './survey/pages/survey-view-page/survey-view-page.component';
+import { ValidateUserComponent } from './survey/components/validate-user/validate-user.component';
+// import { AuthInterceptor } from './Core/Interceptors/auth.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { PqrsValidateUserPageComponent } from './pqrs/page/pqrs-validate-user-page/pqrs-validate-user-page.component';
+import { PqrsCreateComponent } from './pqrs/components/pqrs-create/pqrs-create.component';
+import { PqrsTypePqrsOptionComponent } from './pqrs/components/pqrs-type-pqrs-option/pqrs-type-pqrs-option.component';
+import { PqrsTypeCateoryComponent } from './pqrs/components/pqrs-type-cateory/pqrs-type-cateory.component';
+import { LoadFileComponent } from './pqrs/components/load-file/load-file.component';
+import { PqrsMyPqrsComponent } from './pqrs/components/pqrs-my-pqrs/pqrs-my-pqrs.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReportAccountDiscriminationComponent } from './reports/pages/report-account-discrimination/report-account-discrimination.component';
+import { ReportMemebershipCertificatedComponent } from './reports/pages/report-memebership-certificated/report-memebership-certificated.component';
+import { MatSelectModule } from '@angular/material/select';
+import { CreditInitialComponent } from './credits/pages/credit-initial/credit-initial.component';
+import { DirectivesComponent } from './credits/components/directives/directives.component';
+import { CommentsCreditComponent } from './credits/components/comments-credit/comments-credit.component';
+import { CreditStateComponent } from './credits/components/credit-state/credit-state.component';
+import { UploadDocumentsComponent } from './credits/components/upload-documents/upload-documents.component';
+import { CreditMyCreditsComponent } from './credits/pages/credit-my-credits/credit-my-credits.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +103,30 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SpinnerComponent,
     ServiceComponent,
     SavingComponent,
-    DialogOverviewComponent
+    DialogOverviewComponent,
+    ArticleViewPageComponent,
+    ArticleListSummaryPageComponent,
+    ArticleCategoryComponent,
+    ArticleImageComponent,
+    ListMyArticlesComponent,
+    CreateMyArticleComponent,
+    LoaderComponent,
+    SurveyViewPageComponent,
+    ValidateUserComponent,
+    PqrsValidateUserPageComponent,
+    PqrsCreateComponent,
+    PqrsTypePqrsOptionComponent,
+    PqrsTypeCateoryComponent,
+    LoadFileComponent,
+    PqrsMyPqrsComponent,
+    ReportAccountDiscriminationComponent,
+    ReportMemebershipCertificatedComponent,
+    CreditInitialComponent,
+    DirectivesComponent,
+    CommentsCreditComponent,
+    CreditStateComponent,
+    UploadDocumentsComponent,
+    CreditMyCreditsComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,12 +137,34 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     MatTabsModule,
     MatDialogModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CommonModule,
+    FormsModule,
+    NumberFormatPipe,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    NgxMatTimepickerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    CommonModule,
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-   }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

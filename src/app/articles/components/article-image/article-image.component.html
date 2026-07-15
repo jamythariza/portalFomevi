@@ -1,0 +1,31 @@
+<div *ngIf="images && images.length > 0" id="carouselDemo" class="carousel slide" data-bs-ride="carousel"
+    data-bs-wrap="true">
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-inner">
+        <div *ngFor="let img of images; let i = index" class="carousel-item" [class.active]="i === 0"
+            [attr.data-bs-interval]="2000">
+            <img [src]="getImageSrc(img)" class="d-block w-100" alt="Imagen {{ i + 1 }}" />
+            <div class="carousel-caption">
+                <h5>{{ img.fileName || '' }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de navegación -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+        <button *ngFor="let img of images; let i = index" type="button" [attr.data-bs-target]="'#carouselDemo'"
+            [attr.data-bs-slide-to]="i" [class.active]="i === 0">
+            <img [src]="getImageSrc(img)" alt="thumb {{ i + 1 }}"
+                style="width: 50px; height: 40px; object-fit: cover;" />
+        </button>
+    </div>
+</div>

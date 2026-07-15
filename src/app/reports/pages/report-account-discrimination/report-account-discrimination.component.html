@@ -1,0 +1,43 @@
+<div class="container py-4">
+    <div class="row p-5">
+        <div>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h2 class="text-2xl font-bold">Descuentos FOMEVI</h2>
+            </div>
+            <div class="alert alert-info">
+                <p class="mb-0">
+                    Este reporte presenta los descuentos aplicados a las cuentas de FOMEVI, permitiendo analizar su
+                    discriminación por mes y año. Los datos corresponden al mes anterior, determinado
+                    según la fecha de cierre del mes en curso.
+                </p>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-2 m-2">
+            <mat-form-field appearance="fill">
+                <mat-label>Mes</mat-label>
+                <mat-select [(value)]="selectedMonth">
+                    <mat-option *ngFor="let month of months" [value]="month.value">
+                        {{ month.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-2 m-2">
+            <!-- Select de años -->
+            <mat-form-field appearance="fill">
+                <mat-label>Año</mat-label>
+                <mat-select [(value)]="selectedYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                        {{ year }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3 m-4">
+            <button class="btn btn-primary btn-sm text-white" (click)="generateReport()">
+                Generar Reporte
+            </button>
+        </div>
+    </div>
+</div>
