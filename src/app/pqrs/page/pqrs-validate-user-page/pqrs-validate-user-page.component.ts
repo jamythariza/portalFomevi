@@ -35,10 +35,12 @@ export class PqrsValidateUserPageComponent {
     this.pqrsForm2 = this.fb.group({
       document: ['', [Validators.pattern(/^[0-9]+$/)]],
       code: [''],
+      dataConsent: [false, [Validators.requiredTrue]],
     });
 
     this.pqrsForm = this.fb.group({
       document: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
+      dataConsent: [false, [Validators.requiredTrue]],
     });
   }
 

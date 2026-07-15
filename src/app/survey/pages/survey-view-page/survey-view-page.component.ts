@@ -74,7 +74,8 @@ export class SurveyViewPageComponent implements OnInit {
   }
 
   getResponseFormGroup(question: AbstractControl): FormGroup {
-    return question.get('response') as FormGroup;
+    const response = question.get('response');
+    return response instanceof FormGroup ? response : new FormGroup({});
   }
 
   createQuestionControl(question: SurveyQuestionDto): FormGroup {

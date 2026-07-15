@@ -17,7 +17,7 @@
             </div>
             <div class="col-3">
                 <div class="alert alert-info">
-                    <a href="../Files/Reglamento_PQRS.pdf" target="_blank"><i
+                    <a href="https://www.fomevi.com/Files/Reglamento_PQRS.pdf" target="_blank"><i
                             class="bi bi-file-earmark-pdf"></i>&nbsp;Ver
                         Reglamento General PQRS</a>
                 </div>
@@ -70,6 +70,36 @@
                                             (click)="validateUserByDocument()">Adicionar</button>
                                     </div>
                                 </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h4 class="card-title mb-3">
+                                                    <strong>Autorización para el tratamiento de datos personales</strong>
+                                                </h4>
+                                                <div class="card-text text-justify" style="font-size: 0.9rem; max-height: 250px; overflow-y: auto;">
+                                                    <p>
+                                                        De conformidad con la Ley 1581 de 2012, autorizo al FONDO DE EMPLEADOS FOMEVI para tratar los datos personales suministrados en este formulario con el fin de gestionar y dar respuesta a mi petición, queja, reclamo, sugerencia o solicitud, de acuerdo con su Política de Tratamiento de Datos Personales, disponible en www.fomevi.com.
+                                                    </p>
+                                                    <p>
+                                                        Como titular de la información, conozco que puedo ejercer mis derechos de acceso, actualización, rectificación, supresión, revocatoria de la autorización y demás previstos en la ley, a través del correo <strong>fomevi@fomevi.com</strong> o mediante correo ordinario remitido a la <strong>CR 43A No. 11 A - 80, MEDELLÍN, ANTIOQUIA</strong>.
+                                                    </p>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <mat-checkbox formControlName="dataConsent">
+                                                        He leído y autorizo el tratamiento de mis datos personales de conformidad con la Política de Tratamiento de Datos Personales de FONDO DE EMPLEADOS FOMEVI.
+                                                    </mat-checkbox>
+                                                    <div class="text-danger mt-2"
+                                                        *ngIf="pqrsForm.get('dataConsent')?.invalid && pqrsForm.get('dataConsent')?.touched">
+                                                        Debes aceptar los términos para continuar.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                             <div *ngIf="userIsValid">
                                 <app-pqrs-create *ngIf="pqrsUserValidateModel"
@@ -107,6 +137,35 @@
                                     <div class="col-4 mt-4">
                                         <button type="submit" class="btn btn-primary" [disabled]="pqrsForm2.invalid"
                                             (click)="findByDocument()">Consultar</button>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-title mb-3">
+                                                    <strong>Autorización para el tratamiento de datos personales</strong>
+                                                </h6>
+                                                <div class="card-text text-justify" style="font-size: 0.9rem; max-height: 250px; overflow-y: auto;">
+                                                    <p>
+                                                        De conformidad con la Ley 1581 de 2012, autorizo al FONDO DE EMPLEADOS FOMEVI para tratar los datos personales suministrados en este formulario con el fin de gestionar y dar respuesta a mi petición, queja, reclamo, sugerencia o solicitud, de acuerdo con su Política de Tratamiento de Datos Personales, disponible en www.fomevi.com.
+                                                    </p>
+                                                    <p>
+                                                        Como titular de la información, conozco que puedo ejercer mis derechos de acceso, actualización, rectificación, supresión, revocatoria de la autorización y demás previstos en la ley, a través del correo <strong>fomevi@fomevi.com</strong> o mediante correo ordinario remitido a la <strong>CR 43A No. 11 A - 80, MEDELLÍN, ANTIOQUIA</strong>.
+                                                    </p>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <mat-checkbox formControlName="dataConsent">
+                                                        He leído y autorizo el tratamiento de mis datos personales de conformidad con la Política de Tratamiento de Datos Personales de FONDO DE EMPLEADOS FOMEVI.
+                                                    </mat-checkbox>
+                                                    <div class="text-danger mt-2"
+                                                        *ngIf="pqrsForm2.get('dataConsent')?.invalid && pqrsForm2.get('dataConsent')?.touched">
+                                                        Debes aceptar los términos para continuar.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
