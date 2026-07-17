@@ -3,7 +3,7 @@
     <div class="row p-2 mb-4 bg-body-tertiary rounded-3">
         <h1>Peticiones, Quejas, Recursos y Sugerencias</h1>
         <div class="row">
-            <div class="col-9">
+            <div class="col-12">
                 <p>
                     Las solicitudes para resolver inconsistencias relacionadas con la <strong>recuperación de
                         clave</strong>
@@ -14,13 +14,6 @@
                             href="mailto:{{correo}}?subject=Consulta&body=Hola, recuperación de clave.">{{correo}}</a>
                     </strong>
                 </p>
-            </div>
-            <div class="col-3">
-                <div class="alert alert-info">
-                    <a href="https://www.fomevi.com/Files/Reglamento_PQRS.pdf" target="_blank"><i
-                            class="bi bi-file-earmark-pdf"></i>&nbsp;Ver
-                        Reglamento General PQRS</a>
-                </div>
             </div>
         </div>
 
@@ -65,10 +58,34 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-2 mt-2">
                                         <button type="submit" class="btn btn-primary" [disabled]="pqrsForm.invalid"
                                             (click)="validateUserByDocument()">Adicionar</button>
                                     </div>
+                                    <div class="col-12 col-md-4">
+                        <ul class="thumbnail-widget">
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Reglamento_Peticiones_Quejas_Reclamos_Sugerencias.pdf" target="_blank">Reglamento de PQRS</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Manual_Interno_Politicas_Procedimientos.pdf" target="_blank">Política Tratamiento Datos</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Aviso_de_Privacidad.pdf" target="_blank">Aviso de privacidad</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Clausula_de_consentimiento_Web.pdf" target="_blank">Consentimiento web</a>
+                            </div>
+                          </li>
+                        </ul>
+                    </div>
                                 </div>
 
                                 <div class="row mb-4">
@@ -95,6 +112,7 @@
                                                         Debes aceptar los términos para continuar.
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +127,7 @@
                         <div class="tab-pane fade" id="consulting" role="tabpanel" aria-labelledby="consulting-tab">
                             <form [formGroup]="pqrsForm2">
                                 <div class="row mb-4">
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="form-group">
                                             <label for="phone">Radicado</label>
                                             <input type="text" class="form-control" id="code" formControlName="code" />
@@ -119,7 +137,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="form-group">
                                             <label for="phone">Documento</label>
                                             <input type="text" class="form-control" id="document"
@@ -134,9 +152,33 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-2 mt-2">
                                         <button type="submit" class="btn btn-primary" [disabled]="pqrsForm2.invalid"
                                             (click)="findByDocument()">Consultar</button>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                         <ul class="thumbnail-widget">
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Reglamento_Peticiones_Quejas_Reclamos_Sugerencias.pdf" target="_blank">Reglamento de PQRS</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Manual_Interno_Politicas_Procedimientos.pdf" target="_blank">Política Tratamiento Datos</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Aviso_de_Privacidad.pdf" target="_blank">Aviso de privacidad</a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="thumb-content">
+                              <a href="https://www.fomevi.com/Files/Clausula_de_consentimiento_Web.pdf" target="_blank">Consentimiento web</a>
+                            </div>
+                          </li>
+                        </ul>
                                     </div>
                                 </div>
 

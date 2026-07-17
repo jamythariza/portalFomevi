@@ -4,3 +4,56 @@ a{
 .btn{
     color: white !important;
 }
+
+/* Estilos sobrios para los links junto a los horarios */
+  .thumbnail-widget {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .thumbnail-widget li {
+    margin: 0;
+  }
+
+  .thumbnail-widget .thumb-content {
+    display: block;
+    padding: 4px 10px;
+    background: #ffffff;
+    border: 1px solid #eceef3;
+    border-radius: 8px;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease, border-color .12s ease;
+    color: #1f2933; /* gris oscuro elegante */
+    box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+    font-size: 11px;
+  }
+
+  .thumbnail-widget .thumb-content a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  .thumbnail-widget .thumb-content:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(31,41,55,0.06);
+    border-color: #d7e0f2;
+    background: linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);
+  }
+
+  /* Pequeña flecha decorativa al final del link */
+  .thumbnail-widget .thumb-content a:after {
+    content: '›';
+    margin-left: 8px;
+    color: #9aa7c7;
+    font-weight: 600;
+  }
+
+  @media (max-width: 767px) {
+    .thumbnail-widget .thumb-content { padding: 12px; }
+    .schedule-card { margin-bottom: 12px; }
+  }
